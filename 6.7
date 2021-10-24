@@ -1,0 +1,18 @@
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	int x;
+	int b;
+	cout << "Введите x = ";
+	cin >> x;
+	int y = x * x;
+	y = y * x;
+	
+	b = y * y;
+	// y=x^3 b=x^6
+	y = y * b;
+	y = y * b;
+	cout << " y = " << y << endl;
+}
