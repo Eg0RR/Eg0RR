@@ -1,0 +1,14 @@
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	int A = 23, B = 12, C = 9, bufferA , bufferB , bufferC;
+	cout << " A = " << A << " B = " << B << " C = " << C << endl;
+	bufferB = B;
+	B = A;
+	bufferC = C;
+	C = bufferB;
+	A = bufferC;
+	cout << " A = " << A << " B = " << B << " C = " << C << endl;
+}
