@@ -1,0 +1,14 @@
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    float A1, B1, C1, A2, B2, C2;
+        A1 = 5; B1 = 8;
+        C1 = 3; A2 = 1;
+        B2 = -2; C2 = -2;
+    float y = (C2 * A1 - A2 * C1) / (B2 * A1 - B1 * A2);
+    float x = (C1 - B1 * y) / A1;
+    cout << "y = " << y << " x = " << x << endl;
+    
+}
