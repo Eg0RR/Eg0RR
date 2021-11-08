@@ -1,0 +1,14 @@
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    int year, centure;
+    cout << " Введите год " << endl;
+    cin >> year;
+    centure = year / 100;
+    if (year % 100 > 0)
+        centure = centure + 1;
+    cout << " Век " << centure << endl;
+
+}
