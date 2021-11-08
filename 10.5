@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int first, second, third, fourth, a;
+    setlocale(LC_ALL, "Russian");
+    cout << "Введите a = ";
+    cin >> a;
+    first = a / 1000;
+    second = a % 1000 / 100;
+    third = a % 100 / 10;
+    fourth = a % 10;
+    if (first == fourth && second == third)
+        cout << 1 << endl;
+    else
+        cout << 0 << endl;
+}
