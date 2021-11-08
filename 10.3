@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int A;
+    setlocale(LC_ALL, "Russian");
+    cout << " Введите A = ";
+    cin >> A;
+    if (A > 9 && A < 100 && A % 2 == 0)
+        cout << 1 << endl;
+    else 
+        cout << 0 << endl;
+}
