@@ -1,0 +1,22 @@
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    int N = -1, X, firstDay = -1;
+    while (firstDay < 0 || firstDay > 6)
+    {
+
+        cout << " Введите первый день недели (1-пон, 2-вт... 6-суббота,0-воскресенье)" << endl;
+        cin >> firstDay;
+    }
+    while (N < 1 || N > 365)
+    {
+
+        cout << " Введите число " << endl;
+        cin >> N;
+    }
+    X = ( N + firstDay - 1 ) % 7;
+    cout << X << endl;
+
+}
