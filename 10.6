@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int A, B, C;
+    setlocale(LC_ALL, "Russian");
+    cout << "Введите A = ";
+    cin >> A;
+    cout << "Введите B = ";
+    cin >> B;
+    cout << "Введите C = ";
+    cin >> C;
+    if ((A * A + B * B) == C * C || (A * A + C * C) == B * B || (B * B + C * C) == A * A)
+        cout << 1 << endl;
+    else
+        cout << 0 << endl;
+}
