@@ -1,0 +1,21 @@
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    int A, B, C, X, Spr, Skv, kvVpr, Ostatok;
+    cout << " Введите сторону прямоугольника " << endl;
+    cin >> A;
+    cout << " Введите сторону прямоугольника " << endl;
+    cin >> B;
+    cout << " Введите сторону квадрата " << endl;
+    cin >> C;
+    Spr = A * B;
+    Skv = C * C;
+    kvVpr = (A / C) * (B / C);
+    Ostatok = Spr - Skv * kvVpr;
+    cout << " Квадратов в прямоугольнике = " << kvVpr << endl;
+    cout << " Площадь незанятой части прямоугольника = " << Ostatok;
+
+
+}
