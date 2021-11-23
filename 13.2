@@ -1,0 +1,19 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    float proizvedenie = 1, mnojitel = 1.1;
+    int counter = 0, a;
+    cout << " Введите число = " << endl;
+    cin >> a;
+    while (counter < a)
+    {
+        proizvedenie = proizvedenie * mnojitel;
+        mnojitel = mnojitel + 0.1;
+        counter++;
+    }
+    cout << proizvedenie << endl;
+ }
