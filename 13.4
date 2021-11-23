@@ -1,0 +1,22 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    int a, counter = 0, stepen, summ = 0;
+    float mnojitel;
+    stepen = 1;
+    cout << " Введите число = " << endl;
+    cin >> a;
+    cout << " Введите множитель = " << endl;
+    cin >> mnojitel;
+    while (counter <= a)
+    {
+        summ = summ + stepen;
+        stepen = stepen * mnojitel;
+        counter++;
+    }
+    cout << summ << endl;
+ }
