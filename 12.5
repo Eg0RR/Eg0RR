@@ -1,0 +1,48 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    int a, color, animal;
+    cout << " Введите год";
+    cin >> a;
+    color = a / 12 % 5;
+    animal = (a + 8) % 12;
+    if (color == 0)
+        cout << " Зеленый ";
+    if (color == 1)
+        cout << " Красный ";
+    if (color == 2)
+        cout << " Желтый ";
+    if (color == 3)
+        cout << " Белый ";
+    if (color == 4)
+        cout << " Черный ";
+    if (animal == 0)
+        cout << " крысы ";
+    if (animal == 1)
+        cout << " коровы ";
+    if (animal == 2)
+        cout << " тигра ";
+    if (animal == 3)
+        cout << " зайца ";
+    if (animal == 4)
+        cout << " дракона ";
+    if (animal == 5)
+        cout << " змеи ";
+    if (animal == 6)
+        cout << " лошади ";
+    if (animal == 7)
+        cout << " овцы ";
+    if (animal == 8)
+        cout << " обезьяны ";
+    if (animal == 9)
+        cout << " курицы ";
+    if (animal == 10)
+        cout << " собаки ";
+    if (animal == 11)
+        cout << " свиньи ";
+    // +8 - это смещение для животных
+}
