@@ -1,0 +1,30 @@
+#include <iostream>
+
+using namespace std;
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	int a, b;
+	cout << " Введите число 0-север 90-восток 180-юг 270-запад ";
+	cin >> a;
+	cout << " действие  ";
+	cin >> b;
+	if (b != 0)
+		if (b > 0)
+			a = a - 90;
+		else
+			a = a + 90;
+	if (a < 0)
+		a = 270;
+	else
+		a = a % 360;
+	cout << a;
+	if (a == 90)
+		cout << " восток " << endl;
+	if (a == 180)
+		cout << " юг " << endl;
+	if (a == 270)
+		cout << " запад " << endl;
+	if (a == 0)
+		cout << " север " << endl;
+}
