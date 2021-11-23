@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	int X, Y;
+	cout << "Введите X = ";
+	cin >> X;
+	cout << "Введите Y = ";
+	cin >> Y;
+	if (X * Y > 0)
+		if (X > 0)
+			cout << "1 чeтверть" << endl;
+		else 
+			cout << "3 чeтверть" << endl;
+	else
+		if (X > Y)
+			cout << "4 чeтверть" << endl;
+		else
+			cout << "2 чeтверть" << endl;
+}
