@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	int a, b, c;
+	cout << "Введите a = ";
+		cin >> a;
+		cout << "Введите b = ";
+		cin >> b;
+		cout << "Введите c = ";
+		cin >> c;
+		if (a < b && a < c)
+			cout << b + c << endl;
+		else
+			cout << "a не наименьшее число" << endl;
+			
+		if (b < a && b < c)
+			cout << a + c << endl;
+		else 
+			cout << "b не наименьшее число" << endl;
+		if (c < a && c < b)
+			cout << a + b << endl;
+		else
+			cout << "c не наименьшее число" << endl;
+
+}
