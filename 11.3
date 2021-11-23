@@ -1,0 +1,22 @@
+#include <iostream>
+#include <math.h>
+#include <cmath>
+
+using namespace std;
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	float xA, yA, xB, yB, xC, yC, AB, AC;
+	xA = 5;
+	yA = 3;
+	xB = 2;
+	yB = 1;
+	xC = 8;
+	yC = 6;
+	AB = sqrt(pow((xB - xA), 2) + pow((yB - yA), 2));
+	AC = sqrt(pow((xC - xA), 2) + pow((yC - yA), 2));
+	if (AB < AC)
+		cout << " B " << xB << " " << yB << " AB = " << AB << endl;
+	else
+		cout << " A " << xA << " " << yA << " AC = " << AC << endl;
+}
