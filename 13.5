@@ -1,0 +1,24 @@
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	setlocale(LC_ALL, "Russian");
+	int A, N, X = 1, mnojitel, sum = 1, minus = -1;
+	cout << " Введите A = " << endl;
+	cin >> A;
+	cout << " Введите N = " << endl;
+	cin >> N;
+	mnojitel = A;
+	for (int i = 0; i < N; i++)
+	{
+		X = X * A;
+		sum = sum + X * minus;
+		minus = minus * (-1);
+	}
+	cout << sum << endl;
+	
+}
