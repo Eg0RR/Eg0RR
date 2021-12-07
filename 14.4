@@ -1,0 +1,26 @@
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	setlocale(LC_ALL, "Russian");
+	float vklad = 1000, p, k = 0, s;
+	cout << " Введите процент = ";
+	cin >> p;
+	p = (100 + p) / 100;
+	if (p > 1 && p < 1.25)
+	{
+		while (vklad < 1100)
+		{
+			k = k + 1;
+			vklad = vklad * p;
+		}
+		cout << vklad << endl;
+		cout << k << endl;
+	}
+	else
+		cout << " неверное условие " << endl;
+}
