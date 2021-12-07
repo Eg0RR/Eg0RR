@@ -1,0 +1,17 @@
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	setlocale(LC_ALL, "Russian");
+	int a, k, sum = 0;
+	cout << " Введите a = ";
+	cin >> a;
+	for (k = 0; sum < a; k++)
+		sum = sum + k;
+	k = k - 1;
+	cout << k << " " << sum << endl;
+}
