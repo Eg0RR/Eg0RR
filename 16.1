@@ -1,0 +1,24 @@
+#include <iostream>
+#include <ctime>
+#include <math.h>
+
+using namespace std;
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	setlocale(LC_ALL, "Russian");
+	const int N = 10;
+	int array[N], max, min, i, temp, step;
+	int a, d;
+	cout << " введите число a ";
+	cin >> a;
+	cout << " введите число d ";
+	cin >> d;
+	float k = 1.247;
+	for (i = 0; i < N; i++)
+	{
+		array[i] = a * pow(d, i);
+		cout << " array[" << i << "]  = " << array[i] << endl;
+	}
+}
