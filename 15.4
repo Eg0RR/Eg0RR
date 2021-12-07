@@ -1,0 +1,24 @@
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+int Quarter(int x, int y)
+{
+	if (x * y > 0)
+		if (x > 0)
+			return 1;
+		else
+			return 3;
+	else
+		if (x > y)
+			return 4;
+		else
+			return 2;
+}
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	cout << Quarter(2, 1) << endl;
+	cout << Quarter(7, -3) << endl;
+	cout << Quarter(-1, 2) << endl;
+}
