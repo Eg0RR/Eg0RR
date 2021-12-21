@@ -1,0 +1,25 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	setlocale(LC_ALL, "Russian");
+	int length;
+	cin >> length;
+	int* array = new int[length];
+	for (int i = 0; i < length; i++)
+	{
+		//	array[i] = rand() % 50 + 100000;
+		cin >> array[i];
+		cout << " array[" << i << "]  = " << array[i] << endl;
+	}
+	for (int i = 0; i < length - 1; i++)
+		for (int j = i + 1; j < length; j++)
+			if (array[i] == array[j])
+				if (i < j)
+					cout << i << j << endl;
+				else
+					cout << j << i << endl;
+}
