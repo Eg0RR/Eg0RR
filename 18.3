@@ -1,0 +1,26 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	setlocale(LC_ALL, "Russian");
+	int length;
+	int nechet = 0;
+	cin >> length;
+	int* array = new int[length];
+	for (int i = 0; i < length; i++)
+	{
+		array[i] = rand() % 50 + 51;
+		cout << " array[" << i << "]  = " << array[i] << endl;
+		if (array[i] % 2 == 1)
+			nechet = array[i];
+	}
+	for (int k = 0; k < length; k++)
+	{
+		if (array[k] % 2 == 1)
+			array[k] = array[k] + nechet;
+		cout << " array[" << k << "]  = " << array[k] << endl;
+	}
+}
