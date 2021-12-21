@@ -1,0 +1,27 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	setlocale(LC_ALL, "Russian");
+	int length;
+	cin >> length;
+	int* array = new int[length];
+	for (int i = 0; i < length; i++)
+	{
+		array[i] = rand() % 50 + 51;
+		cout << " array[" << i << "]  = " << array[i] << endl;
+	}
+	int k = 2;
+	int l = 7;
+	float counter = 0;
+	float sum = 0;
+	for (int a = k; a <= l; a++)
+	{
+		sum = sum + array[a];
+		counter = counter + 1;
+	}
+	cout << sum / counter;
+}
