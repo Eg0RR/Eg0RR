@@ -1,0 +1,22 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	setlocale(LC_ALL, "Russian");
+	int length;
+	cin >> length;
+	int* array = new int[length];
+	for (int i = 0; i < length; i++)
+	{
+		array[i] = rand() % 50 + 51; 
+		cout << " array[" << i << "]  = " << array[i] << endl;
+	}
+	int min = 100000000;
+	for (int i = 0; i < length; i = i + 2)
+		if (array[i] < min)
+			min = array[i];
+	cout << min << endl;
+}
