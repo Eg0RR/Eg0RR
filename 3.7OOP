@@ -1,0 +1,164 @@
+#include <iostream>
+#include "tchar.h"
+#include <cmath>
+#include <conio.h>
+#include <math.h>
+
+using namespace std;
+struct date
+{
+	int day;
+	int month;
+	int year;
+};
+enum etype {
+	laborer, secretary, manager, accountant, executive, researcher
+};
+struct employee
+{
+	date dat;
+	int number;
+	float salary;
+	etype position;
+};
+int main(int argc, _TCHAR* argv[])
+{
+	setlocale(LC_ALL, "Russian");
+	employee emp1;
+	employee emp2;
+	employee emp3;
+	date date1;
+	date date2;
+	date date3; etype b;
+	char input1;
+	char input2;
+	char input3;
+	cin >> input1;
+	cin >> input2;
+	cin >> input3;
+	cout << "Введите номер и пособие первого ";
+	cin >> emp1.number;
+	cin >> emp1.salary;
+	cout << "Введите номер и пособие второго ";
+	cin >> emp2.number;
+	cin >> emp2.salary;
+	cout << "Введите номер и пособие третьего ";
+	cin >> emp3.number;
+	cin >> emp3.salary;
+	cout << emp1.number << " " << emp1.salary << " " << emp2.number << " " << emp2.salary << " " << emp3.number << " " << emp3.salary << endl;
+	cout << "Введите день ";
+	cin >> date1.day;
+	cout << "Введите месяц ";
+	cin >> date2.month;
+	cout << "Введите год ";
+	cin >> date3.year;
+	cout << date1.day << "/" << date2.month << "/" << date3.year << endl;
+	cout << "Введите день ";
+	cin >> date1.day;
+	cout << "Введите месяц ";
+	cin >> date2.month;
+	cout << "Введите год ";
+	cin >> date3.year;
+	cout << date1.day << "/" << date2.month << "/" << date3.year << endl;
+	cout << "Введите день ";
+	cin >> date1.day;
+	cout << "Введите месяц ";
+	cin >> date2.month;
+	cout << "Введите год ";
+	cin >> date3.year;
+	cout << date1.day << "/" << date2.month << "/" << date3.year << endl;
+	switch (input1)
+	{
+	case 'l':  emp1.position = laborer;
+		break;
+	case 's':  emp1.position = secretary;
+		break;
+	case 'm':  emp1.position = manager;
+		break;
+	case 'a':  emp1.position = accountant;
+		break;
+	case 'e': emp1.position = executive;
+		break;
+	case 'r': emp1.position = researcher;
+		break;
+	}
+	switch (emp1.position)
+	{
+	case 0: cout << " laborer ";
+		break;
+	case 1: cout << " secretary ";
+		break;
+	case 2: cout << " manager ";
+		break;
+	case 3: cout << " accountant ";
+		break;
+	case 4: cout << " executive ";
+		break;
+	case 5: cout << " researcher ";
+		break;
+	}
+	return 0;
+}
+switch (input2)
+{
+case 'l':  emp2.position = laborer;
+	break;
+case 's':  emp2.position = secretary;
+	break;
+case 'm':  emp2.position = manager;
+	break;
+case 'a':  emp2.position = accountant;
+	break;
+case 'e': emp2.position = executive;
+	break;
+case 'r': emp2.position = researcher;
+	break;
+}
+switch (emp2.position)
+{
+case 0: cout << " laborer ";
+	break;
+case 1: cout << " secretary ";
+	break;
+case 2: cout << " manager ";
+	break;
+case 3: cout << " accountant ";
+	break;
+case 4: cout << " executive ";
+	break;
+case 5: cout << " researcher ";
+	break;
+}
+return 0;
+switch (input3)
+{
+case 'l':  emp3.position = laborer;
+	break;
+case 's':  emp3.position = secretary;
+	break;
+case 'm':  emp3.position = manager;
+	break;
+case 'a':  emp3.position = accountant;
+	break;
+case 'e': emp3.position = executive;
+	break;
+case 'r': emp3.position = researcher;
+	break;
+}
+switch (emp3.position)
+{
+case 0: cout << " laborer ";
+	break;
+case 1: cout << " secretary ";
+	break;
+case 2: cout << " manager ";
+	break;
+case 3: cout << " accountant ";
+	break;
+case 4: cout << " executive ";
+	break;
+case 5: cout << " researcher ";
+	break;
+}
+return 0;
+}
