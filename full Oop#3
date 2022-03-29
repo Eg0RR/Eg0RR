@@ -1,0 +1,427 @@
+#3
+№4
+#include <iostream>
+#include "tchar.h"
+#include <cmath>
+#include <conio.h>
+#include <math.h>
+
+using namespace std;
+struct employee
+{
+	int number;
+	float salary;
+};
+int main(int argc, _TCHAR* argv[])
+{
+	setlocale(LC_ALL, "Russian");
+	employee emp1;
+	employee emp2;
+	employee emp3;
+	cout << "Введите номер и пособие первого ";
+	cin >> emp1.number;
+	cin >> emp1.salary;
+	cout << "Введите номер и пособие второго ";
+	cin >> emp2.number;
+	cin >> emp2.salary;
+	cout << "Введите номер и пособие третьего ";
+	cin >> emp3.number;
+	cin >> emp3.salary;
+	cout << emp1.number << " " << emp1.salary << " " << emp2.number << " " << emp2.salary << " " << emp3.number << " " << emp3.salary;
+}
+---------------------------------------------------------------------------------------------------------------------------------------------
+№5
+#include <iostream>
+#include "tchar.h"
+#include <cmath>
+#include <conio.h>
+#include <math.h>
+
+using namespace std;
+struct date
+{
+	int day;
+	int month;
+	int year;
+};
+int main(int argc, _TCHAR* argv[])
+{
+	setlocale(LC_ALL, "Russian");
+	date date1;
+	date date2;
+	date date3;
+	cout << "Введите день ";
+	cin >> date1.day;
+	cout << "Введите месяц ";
+	cin >> date2.month;
+	cout << "Введите год ";
+	cin >> date3.year;
+	cout << date1.day << "/" << date2.month << "/" << date3.year << endl;
+}
+----------------------------------------------------------------------------------------------------------------------------------------------
+№6
+#include <iostream>
+using namespace std;
+enum etype {
+	laborer, secretary, manager, accountant, executive, researcher
+};
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	etype b;
+	char input;
+	cin >> input;
+	switch (input)
+	{
+	case 'l':  b = laborer;
+		break;
+	case 's':  b = secretary;
+		break;
+	case 'm':  b = manager;
+		break;
+	case 'a':  b = accountant;
+		break;
+	case 'e': b = executive;
+		break;
+	case 'r': b = researcher;
+		break;
+	}
+	switch (b)
+	{
+	case 0: cout << " laborer ";
+		break;
+	case 1: cout << " secretary ";
+		break;
+	case 2: cout << " manager ";
+		break;
+	case 3: cout << " accountant ";
+		break;
+	case 4: cout << " executive ";
+		break;
+	case 5: cout << " researcher ";
+		break;
+	}
+	return 0;
+}
+---------------------------------------------------------------------------------------------------------------------------------------
+№7
+#include <iostream>
+#include "tchar.h"
+#include <cmath>
+#include <conio.h>
+#include <math.h>
+
+using namespace std;
+struct date
+{
+	int day;
+	int month;
+	int year;
+};
+enum etype {
+	laborer, secretary, manager, accountant, executive, researcher
+};
+struct employee
+{
+	date dat;
+	int number;
+	float salary;
+	etype position;
+};
+int main(int argc, _TCHAR* argv[])
+{
+	setlocale(LC_ALL, "Russian");
+	employee emp1;
+	employee emp2;
+	employee emp3;
+	date date1;
+	date date2;
+	date date3; etype b;
+	char input1;
+	char input2;
+	char input3;
+	cout << "Введите номер и пособие первого ";
+	cin >> emp1.number;
+	cin >> emp1.salary;
+	cout << "Введите номер и пособие второго ";
+	cin >> emp2.number;
+	cin >> emp2.salary;
+	cout << "Введите номер и пособие третьего ";
+	cin >> emp3.number;
+	cin >> emp3.salary;
+	cout << emp1.number << " " << emp1.salary << " " << emp2.number << " " << emp2.salary << " " << emp3.number << " " << emp3.salary << endl;
+	cout << "Введите день ";
+	cin >> date1.day;
+	cout << "Введите месяц ";
+	cin >> date2.month;
+	cout << "Введите год ";
+	cin >> date3.year;
+	cout << date1.day << "/" << date2.month << "/" << date3.year << endl;
+	cout << "Введите день второго ";
+	cin >> date1.day;
+	cout << "Введите месяц второго ";
+	cin >> date2.month;
+	cout << "Введите год второго ";
+	cin >> date3.year;
+	cout << date1.day << "/" << date2.month << "/" << date3.year << endl;
+	cout << "Введите день третьего ";
+	cin >> date1.day;
+	cout << "Введите месяц третьего ";
+	cin >> date2.month;
+	cout << "Введите год третьего ";
+	cin >> date3.year;
+	cout << date1.day << "/" << date2.month << "/" << date3.year << endl;
+	cin >> input1;
+	cin >> input2;
+	cin >> input3;
+	switch (input1)
+	{
+	case 'l':  emp1.position = laborer;
+		break;
+	case 's':  emp1.position = secretary;
+		break;
+	case 'm':  emp1.position = manager;
+		break;
+	case 'a':  emp1.position = accountant;
+		break;
+	case 'e': emp1.position = executive;
+		break;
+	case 'r': emp1.position = researcher;
+		break;
+	}
+	switch (emp1.position)
+	{
+	case 0: cout << " laborer ";
+		break;
+	case 1: cout << " secretary ";
+		break;
+	case 2: cout << " manager ";
+		break;
+	case 3: cout << " accountant ";
+		break;
+	case 4: cout << " executive ";
+		break;
+	case 5: cout << " researcher ";
+		break;
+	}
+switch (input2)
+{
+case 'l':  emp2.position = laborer;
+	break;
+case 's':  emp2.position = secretary;
+	break;
+case 'm':  emp2.position = manager;
+	break;
+case 'a':  emp2.position = accountant;
+	break;
+case 'e': emp2.position = executive;
+	break;
+case 'r': emp2.position = researcher;
+	break;
+}
+switch (emp2.position)
+{
+case 0: cout << " laborer ";
+	break;
+case 1: cout << " secretary ";
+	break;
+case 2: cout << " manager ";
+	break;
+case 3: cout << " accountant ";
+	break;
+case 4: cout << " executive ";
+	break;
+case 5: cout << " researcher ";
+	break;
+}
+switch (input3)
+{
+case 'l':  emp3.position = laborer;
+	break;
+case 's':  emp3.position = secretary;
+	break;
+case 'm':  emp3.position = manager;
+	break;
+case 'a':  emp3.position = accountant;
+	break;
+case 'e': emp3.position = executive;
+	break;
+case 'r': emp3.position = researcher;
+	break;
+}
+switch (emp3.position)
+{
+case 0: cout << " laborer ";
+	break;
+case 1: cout << " secretary ";
+	break;
+case 2: cout << " manager ";
+	break;
+case 3: cout << " accountant ";
+	break;
+case 4: cout << " executive ";
+	break;
+case 5: cout << " researcher ";
+	break;
+}
+return 0;
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------
+№8
+#include <iostream>
+using namespace std;
+
+struct fraction
+{
+	int chislitel, znamenatel;
+};
+int main()
+{
+	fraction a;
+	fraction b;
+	char dummychar;
+	setlocale(LC_ALL, "Russian");
+	cout << "Введите первую дробь ";
+	cin >> a. chislitel >> dummychar >> a. znamenatel;
+	cout << "Введите вторую дробь ";
+	cin >> b. chislitel >> dummychar >> b. znamenatel;
+	cout << a.chislitel * b.znamenatel + b.chislitel * a.znamenatel << "/" << b. znamenatel * a.znamenatel <<  endl;
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------
+№9
+#include <iostream>
+using namespace std;
+struct t1me
+{
+	int seconds, minutes, hours;
+};
+int main()
+{
+	t1me vremya;
+	long totalsecs;
+	setlocale(LC_ALL, "Russian");
+	cout << "Введите секнуды, минуты и часы ";
+	cin >> vremya.seconds >> vremya.minutes >> vremya.hours;
+	totalsecs = vremya.hours * 3600 + vremya.minutes * 60 + vremya.seconds;
+	cout << totalsecs;
+}
+----------------------------------------------------------------------------------------------------------------------------------------------
+№10
+#include <iostream>
+
+#include <iostream>
+using namespace std;
+
+struct sterling
+{
+	int funti, shillings, pensi;
+};
+int main()
+{
+	sterling dengi;
+	setlocale(LC_ALL, "Russian");
+	int x, funtiOld, shellingiOld, pensiOld;
+	cout << "Введите в новой системе фунты и пенсы ";
+	cin >> dengi.funti >> dengi.pensi;
+	x = (dengi.funti * 100 + dengi.pensi) * 2.4;// всего пенсов в старом счете
+	funtiOld = x / 240;
+	shellingiOld = (x - funtiOld * 240) / 20;
+	pensiOld = (x - (funtiOld * 240 + shellingiOld * 20));
+	cout << funtiOld << "." << shellingiOld << "." << pensiOld;
+}
+--------------------------
+#include <iostream>
+using namespace std;
+
+struct sterling
+{
+	int funti, shillings, pensi;
+};
+int main()
+{
+	sterling dengi;
+	setlocale(LC_ALL, "Russian");
+	double x, sumOld;
+	int funtiOld, shellingiOld, pensiOld;
+	double NewMoney;
+	cout << "Введите в новой системе фунты и пенсы ";
+	//cin >> dengi.funti >> dengi.pensi;
+	cin >> NewMoney;
+	x = NewMoney * 100;
+	cout << x;
+	sumOld = x * 2.4;
+	funtiOld = sumOld / 240;
+	shellingiOld = (sumOld - funtiOld * 240) / 20;
+	pensiOld = (sumOld - (funtiOld * 240 + shellingiOld * 20));
+	cout << funtiOld << "." << shellingiOld << "." << pensiOld;
+	//x = (dengi.funti * 100 + dengi.pensi) * 2.4;// всего пенсов в старом счете
+	/*
+	funtiOld = x / 240;
+	shellingiOld = (x - funtiOld * 240) / 20;
+	pensiOld = (x - (funtiOld * 240 + shellingiOld * 20));
+	cout << funtiOld << "." << shellingiOld << "." << pensiOld;
+	*/
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+№11
+#include <iostream>
+using namespace std;
+struct t1me
+{
+	int seconds, minutes, hours;
+};
+int main()
+{
+	t1me vremya;
+	t1me vremya2;
+	t1me vremyaKonec;
+	long totalsecs, totalsecs2;
+	int all;
+	setlocale(LC_ALL, "Russian");
+	cout << "Введите часы, минуты и секунды ";
+	cin >> vremya.hours >> vremya.minutes >> vremya.seconds;
+	cout << "Введите вторые часы, минуты и секунды ";
+	cin >> vremya2.hours >> vremya2.minutes >> vremya2.seconds;
+	totalsecs = vremya.hours * 3600 + vremya.minutes * 60 + vremya.seconds;
+	totalsecs2 = vremya2.hours * 3600 + vremya2.minutes * 60 + vremya2.seconds;
+	all = totalsecs + totalsecs2;
+	vremyaKonec.hours = all / 3600;
+	vremyaKonec.minutes = (all % 3600) / 60;
+	vremyaKonec.seconds = all % 60;
+	if (vremyaKonec.hours > 24)
+		vremyaKonec.hours = vremyaKonec.hours - 24;
+	cout << vremyaKonec.hours << ":" << vremyaKonec.minutes << ":" << vremyaKonec.seconds;
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+№12
+#include <iostream>
+using namespace std;
+struct fraction
+{
+	float chislitel, znamenatel;
+};
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	fraction a, b;
+	float slojenie, vichitanie, umnozjenie, delenie;
+	char slesh;
+	char oper;
+	float ans = 0;
+	cin >> a.chislitel >> slesh >> a.znamenatel >> oper >> b.chislitel >> slesh >> b.znamenatel;
+	switch (oper)
+	{
+	case '+':  ans = (a.chislitel * b.znamenatel + a.znamenatel * b.chislitel) / (a.znamenatel * b.znamenatel);
+		break;
+	case '-':  ans = (a.chislitel * b.znamenatel - a.znamenatel * b.chislitel) / (a.znamenatel * b.znamenatel);
+		break;
+	case '*':  ans = (a.chislitel * b.chislitel) / (a.znamenatel * b.znamenatel);
+		break;
+	case '/':  ans = (a.chislitel * b.znamenatel) / (a.znamenatel * b.chislitel);
+		break;
+	default:   ans = 0;
+	}
+	cout << ans;
+}
+--------------------------------------------------------------------------------------------------------------------------
