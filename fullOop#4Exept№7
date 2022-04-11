@@ -1,0 +1,279 @@
+#4
+№5
+#include <iostream>
+using namespace std;
+long hms_to_secs(int hour, int minute, int sec)
+{
+  return hour * 3600 + minute * 60 + sec;
+}
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    int hour, minute, sec, a;
+    cout << "Введите часы ";
+    cin >> hour;
+    cout << "Введите минуты ";
+    cin >> minute;
+    cout << "Введите секунды ";
+    cin >> sec;
+    cout << hms_to_secs(hour, minute, sec) << endl;
+    cout << "Хотите ввести новые данные? Если да - ввведите 1. Если нет - введите 0 ";
+    cin >> a;
+    while(a == 1)
+    { 
+    cout << "Введите часы ";
+    cin >> hour;
+    cout << "Введите минуты ";
+    cin >> minute;
+    cout << "Введите секунды ";
+    cin >> sec;
+    cout << hms_to_secs(hour, minute, sec) << endl;
+    cout << "Хотите ввести новые данные? Если да - ввведите 1. Если нет - введите 0 ";
+    cin >> a;
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+№6
+#include <iostream>
+using namespace std;
+struct t1me
+{
+	int seconds, minutes, hours;
+};
+long time_to_secs(t1me vremya)
+{
+	return vremya.hours * 3600 + vremya.minutes * 60 + vremya.seconds * 1;
+}
+t1me secs_to_time(int seconds) 
+{
+	t1me vremya;
+	vremya.seconds = seconds % 60;
+	vremya.minutes = (seconds % 3600) / 60;
+	vremya.hours = seconds / 3600;
+	return vremya;
+}
+int main()
+{
+	t1me vremya;
+	t1me vremya2;
+	t1me vremyaKonec;
+	long totalsecs, totalsecs2;
+	int all;
+	setlocale(LC_ALL, "Russian");
+	cout << " Введите секунды ";
+	cin >> totalsecs;
+	vremya = secs_to_time(totalsecs);
+	totalsecs2 = time_to_secs(vremya);
+	cout << totalsecs2;
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------
+№8
+#include <iostream> 
+using namespace std; 
+
+void swap(int* a, int* b);
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    int a = 5;
+    int b = 7;
+    cout << a << " " << b << endl;
+    swap(&a, &b);
+    cout << a << " " << b;
+}
+
+void swap(int* a, int* b)
+{
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+-------------------------------------------------------------------------------------------------------------------------------------------
+№9
+#include <iostream> 
+using namespace std;
+struct t1me
+{
+    int seconds, minutes, hours;
+};
+void swap(t1me* a, t1me* b);
+int main()
+{
+    t1me vremya1 = { 5, 5, 5};
+    t1me vremya2 = { 10, 10, 10 };
+    setlocale(LC_ALL, "Russian");
+    cout << vremya1.seconds << " " << vremya1.minutes << " " << vremya1.hours << endl;
+    cout << vremya2.seconds << " " << vremya2.minutes << " " << vremya2.hours << endl;
+    swap(&vremya1, &vremya2);
+    cout << vremya1.seconds << " " << vremya1.minutes << " " << vremya1.hours << endl;
+    cout << vremya2.seconds << " " << vremya2.minutes << " " << vremya2.hours;
+}
+
+void swap(t1me* a, t1me* b)
+{
+    t1me temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+-------------------------------------------------------------------------------------------------------------------------------------------
+№10
+#include <iostream> 
+using namespace std;
+int a = 0;
+void Global()
+{
+    a++;
+    cout << a << endl;
+}
+void local()
+{
+    static int f = 0;
+    f++;
+    cout << f << endl;
+}
+int main()
+{
+    for (int i = 0; i < 10; i++)
+        Global();
+    cout << a << endl;
+    for (int y = 0; y < 10; y++)
+        local();
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+№11
+#include <iostream>
+using namespace std;
+
+struct sterling
+{
+	int funti, shillings, pensi;
+};
+sterling getMoney(int funti, int shellingi, int pensi)
+{
+	sterling ster = { funti, shellingi, pensi };
+	return ster;
+}
+sterling sumSterling(sterling s1, sterling s2)
+{
+	sterling s3 = { s1.funti + s2.funti, s1.shillings + s2.shillings, s1.pensi + s2.pensi };
+}
+void outsterling(sterling s) 
+{
+	cout << s.funti << " . " << s.shillings << " . " << s.pensi << endl;
+}
+int main()
+{
+	sterling dengi;
+	setlocale(LC_ALL, "Russian");
+	int x, funtiOld, shellingiOld, pensiOld;
+	cout << "Введите в новой системе фунты и пенсы ";
+	cin >> dengi.funti >> dengi.pensi;
+	x = (dengi.funti * 100 + dengi.pensi) * 2.4;// всего пенсов в старом счете
+	funtiOld = x / 240;
+	shellingiOld = (x - funtiOld * 240) / 20;
+	pensiOld = (x - (funtiOld * 240 + shellingiOld * 20));
+	cout << funtiOld << "." << shellingiOld << "." << pensiOld;
+	cout << getMoney << endl;
+	cout << sumSterling << endl;
+	cout << outsterling << endl;
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+№11
+#include <iostream>
+using namespace std;
+
+struct sterling
+{
+	int funti, shillings, pensi;
+};
+sterling getMoney(int funti, int shellingi, int pensi)
+{
+	sterling ster = { funti, shellingi, pensi };
+	return ster;
+}
+sterling sumSterling(sterling s1, sterling s2)
+{
+	sterling s3 = { s1.funti + s2.funti, s1.shillings + s2.shillings, s1.pensi + s2.pensi };
+	if (s3.pensi >= 12)
+	{
+		s3.pensi = s3.pensi - 12;
+		s3.shillings = s3.shillings + 1;
+	}
+	if (s3.shillings >= 20)
+	{
+		s3.shillings = s3.shillings - 20;
+		s3.funti = s3.funti + 1;
+	}
+		
+	return s3;
+}
+void outsterling(sterling s)
+{
+	cout << s.funti << " . " << s.shillings << " . " << s.pensi << endl;
+}
+int main()
+{
+	sterling dengi;
+	sterling dengi2;
+	setlocale(LC_ALL, "Russian");
+	int funti, shellingi, pensi;
+	cout << "Введите фунты, шелинги и пенсы";
+	cin >> funti >> shellingi >> pensi;
+	dengi = getMoney(funti, shellingi, pensi);
+	cout << "Введите фунты, шелинги и пенсы";
+	cin >> funti >> shellingi >> pensi;
+	dengi2 = getMoney(funti, shellingi, pensi);
+	outsterling(sumSterling(dengi, dengi2));
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------
+№12
+#include <iostream>
+using namespace std;
+struct fraction
+{
+	float chislitel, znamenatel;
+};
+float fadd(fraction a, fraction b)
+{
+	return (a.chislitel* b.znamenatel + a.znamenatel * b.chislitel) / (a.znamenatel * b.znamenatel);
+}
+float fsub(fraction a, fraction b)
+{
+	return (a.chislitel * b.znamenatel - a.znamenatel * b.chislitel) / (a.znamenatel * b.znamenatel);
+}
+float fmul(fraction a, fraction b)
+{
+	return (a.chislitel * b.chislitel) / (a.znamenatel * b.znamenatel);
+}
+float fdiv(fraction a, fraction b)
+{
+	return (a.chislitel * b.znamenatel) / (a.znamenatel * b.chislitel);
+}
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	fraction a, b;
+	float slojenie, vichitanie, umnozjenie, delenie;
+	char slesh;
+	char oper;
+	float ans = 0;
+	cin >> a.chislitel >> slesh >> a.znamenatel >> oper >> b.chislitel >> slesh >> b.znamenatel;
+	switch (oper)
+	{
+	case '+':  ans = fadd(a, b);
+		break;
+	case '-':  ans = fsub(a, b);
+		break;
+	case '*':  ans = fmul(a, b);
+		break;
+	case '/':  ans = fdiv(a, b);
+		break;
+	default:   ans = 0;
+	}
+	cout << ans;
+}
+-----------------------------------------------------------------
