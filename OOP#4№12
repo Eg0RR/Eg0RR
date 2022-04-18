@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+struct fraction
+{
+	float chislitel, znamenatel;
+};
+fraction fadd(fraction a, fraction b)
+{
+	return { (a.chislitel * b.znamenatel + a.znamenatel * b.chislitel) , (a.znamenatel * b.znamenatel) };
+}
+fraction fsub(fraction a, fraction b)
+{
+	return { (a.chislitel * b.znamenatel - a.znamenatel * b.chislitel) , (a.znamenatel * b.znamenatel) };
+}
+fraction fmul(fraction a, fraction b)
+{
+	fraction out;
+	return { (a.chislitel * b.chislitel) , (a.znamenatel * b.znamenatel) };
+}
+fraction fdiv(fraction a, fraction b)
+{
+	return { (a.chislitel * b.znamenatel) , (a.znamenatel * b.chislitel) };
+}
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	fraction a, b;
+	float slojenie, vichitanie, umnozjenie, delenie;
+	char slesh;
+	char oper;
+	fraction ans;
+	cin >> a.chislitel >> slesh >> a.znamenatel >> oper >> b.chislitel >> slesh >> b.znamenatel;
+	switch (oper)
+	{
+	case '+':  ans = fadd(a, b);
+		break;
+	case '-':  ans = fsub(a, b);
+		break;
+	case '*':  ans = fmul(a, b);
+		break;
+	case '/':  ans = fdiv(a, b);
+		break;
+	default:   ans = { 0, 0 };
+	}
+	cout << ans.chislitel << " / " << ans.znamenatel;
+}
