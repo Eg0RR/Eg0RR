@@ -1,0 +1,429 @@
+#5
+№4
+#include <iostream> 
+using namespace std;
+//////////////////////////////////////////////////////
+class employee // определение класса 
+{
+private:
+	int number;
+	float salary;
+public:
+	// номер сотрудника
+	// зарплата
+	void setemployee(int num, float sal)
+	{
+		 number = num;
+		 salary = sal;
+	}
+	void showemployee() // вывод данных 
+	{
+		cout << "номер " << number << endl;
+		cout << " зарплата " << salary << endl;
+	}
+};
+//////////////////////////////////////////////////////
+int main()
+{
+	int number;
+	float salary;
+	setlocale(LC_ALL, "Russian");
+	employee emp1; // определение объекта
+	employee emp2;
+	employee emp3;
+	// класса part
+	cout << "Введите номер первого сотрудника" << endl;
+	cin >> number;
+	cout << "Введите зарплату первого сотрудника" << endl;
+	cin >> salary;
+	emp1.setemployee(number, salary); // вызов метода
+	cout << "Введите номер второго сотрудника" << endl;
+	cin >> number;
+	cout << "Введите зарплату второго сотрудника" << endl;
+	cin >> salary;
+	emp2.setemployee(number, salary); // вызов метода
+	cout << "Введите номер третьего сотрудника" << endl;
+	cin >> number;
+	cout << "Введите зарплату третьего сотрудника" << endl;
+	cin >> salary;
+	emp3.setemployee(number, salary); 
+	emp1.showemployee();
+	emp2.showemployee(); 
+	emp3.showemployee(); 
+	return 0;
+}
+---------------------------------------------------------------------------------------------------------------------------------------------
+№5
+#include <iostream>
+using namespace std;
+typedef basic_string<char> string;
+//////////////////////////////////////////////////////
+class date // определение класса 
+{
+private:
+	int month, day, year;
+public:
+	// месяц
+	// день
+	// год
+	void getdate(int mo, int da, int yea)
+	{
+		month = mo;
+		day = da;
+		year = yea;
+	}
+	void showdate() // вывод данных 
+	{
+		cout << " месяц " << month << endl;
+		cout << " день " << day << endl;
+		cout << " год " << year << endl;
+	}
+};
+//////////////////////////////////////////////////////
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	int month, day, year;
+	char dumychar;
+	cin >> month >> dumychar >> day >> dumychar >> year;
+	date d;
+	d.getdate(month, day, year);
+	d.showdate();
+	return 0;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+№6
+#include <iostream> 
+using namespace std;
+//////////////////////////////////////////////////////
+enum etype {
+laborer, secretary, manager, accountant, executive, researcher
+	};
+class date
+{
+private:
+	int month, day, year;
+public:
+	void getdate(int mo, int da, int yea)
+	{
+		month = mo;
+		day = da;
+		year = yea;
+	}
+	void showdate() // вывод данных 
+	{
+		cout << " месяц " << month << endl;
+		cout << " день " << day << endl;
+		cout << " год " << year << endl;
+	}
+};
+class employee // определение класса 
+{
+private:
+	int number;
+	float salary;
+	etype position;
+	date data;
+public:
+	// номер сотрудника
+	// зарплата
+	void setemployee(int num, float sal, date d, char e)
+	{
+		number = num;
+		salary = sal;
+		data = d;
+		switch (e)
+		{
+		case 'l':  position = laborer;
+			break;
+		case 's':  position = secretary;
+			break;
+		case 'm':  position = manager;
+			break;
+		case 'a':  position = accountant;
+			break;
+		case 'e':  position = executive;
+			break;
+		case 'r':  position = researcher;
+			break;
+		}
+	}
+	void showemployee() // вывод данных 
+	{
+		cout << "номер " << number << endl;
+		cout << " зарплата " << salary << endl;
+		cout << "дата принятия на работу" << endl;
+		data.showdate();
+		switch (position)
+		{
+		case 0: cout << " laborer ";
+			break;
+		case 1: cout << " secretary ";
+			break;
+		case 2: cout << " manager ";
+			break;
+		case 3: cout << " accountant ";
+			break;
+		case 4: cout << " executive ";
+			break;
+		case 5: cout << " researcher ";
+			break;
+		}
+	}
+};
+//////////////////////////////////////////////////////
+int main()
+{
+	int number;
+	float salary;
+	char input1;
+	int day, month, year;
+	char dumychar;
+	date data;
+	setlocale(LC_ALL, "Russian");
+	employee emp1; // определение объекта
+	employee emp2;
+	employee emp3;
+	// класса part
+	cout << "Введите номер первого сотрудника" << endl;
+	cin >> number;
+	cout << "Введите первую букву должности первого сотрудника. l = laborer, s = secretary, m = manager, a = accountant, e = executive, r = researcher." << endl;
+	cin >> input1;
+	cout << "Введите зарплату первого сотрудника" << endl;
+	cin >> salary;
+	cout << "Введите дату приема первого сотрудника на работу через /" << endl;
+
+	cin >> month >> dumychar >> day >> dumychar >> year;
+	data.getdate(month, day, year);
+	emp1.setemployee(number, salary, data, input1);
+	cout << "Введите номер второго сотрудника" << endl;
+	cin >> number;
+	cout << "Введите первую букву должности второго сотрудника. l = laborer, s = secretary, m = manager, a = accountant, e = executive, r = researcher." << endl;
+	cin >> input1;
+	cout << "Введите зарплату второго сотрудника" << endl;
+	cin >> salary;
+	cout << "Введите дату приема второго сотрудника на работу через /" << endl;
+
+	cin >> month >> dumychar >> day >> dumychar >> year;
+	data.getdate(month, day, year);
+	emp2.setemployee(number, salary, data, input1);
+	cout << "Введите номер третьего сотрудника" << endl;
+	cin >> number;
+	cout << "Введите первую букву должности третьего сотрудника. l = laborer, s = secretary, m = manager, a = accountant, e = executive, r = researcher." << endl;
+	cin >> input1;
+	cout << "Введите зарплату третьего сотрудника" << endl;
+	cin >> salary;
+	cout << "Введите дату приема третьего сотрудника на работу через /" << endl;
+
+	cin >> month >> dumychar >> day >> dumychar >> year;
+	data.getdate(month, day, year);
+	emp3.setemployee(number, salary, data, input1);
+	emp1.showemployee();
+	emp2.showemployee();
+	emp3.showemployee();
+	
+	
+	return 0;
+}
+------------------------------------------------------------------------------------------------------------------------------------
+№7 почти
+#include <iostream>
+using namespace std;
+typedef basic_string<char> string;
+//////////////////////////////////////////////////////
+class angle // определение класса 
+{
+private:
+	int gradusi;
+	float minuti;
+	char direction;
+public:
+	angle(int g, float m, char d)
+	{
+		gradusi = g;
+		minuti = m;
+		direction = d;
+	}
+	// месяц
+	// день
+	// год
+	void getangle()
+	{
+		char A;
+		cout << " Введите градусы и минуты" << endl;
+		cin >> gradusi >> A >> minuti >> A;
+		cout << "Введите напрваление " << endl;
+		cin >> direction;
+	}
+	void showangle() // вывод данных 
+	{
+		cout << " градусы " <<  gradusi << '\xF8' << endl;
+		cout << " минуты " << minuti << endl;
+		cout << " направление " << direction << endl;
+	}
+	void mainQ()
+	{
+
+	}
+};
+//////////////////////////////////////////////////////
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	angle fr;
+	fr.getangle();
+	fr.showangle();
+	return 0;
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+№8
+#include <iostream>
+using namespace std;
+class trash
+{
+public:
+    static int id;
+    int number;
+    trash()
+    {
+        number = id;
+        id++;
+    }
+    void shownumber()
+    {
+        cout << number;
+    }
+};
+int trash::id = 1;
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    trash t1 = trash();
+    trash t2 = trash();
+    trash t3 = trash();
+    trash t4 = trash();
+    t1.shownumber();
+    t2.shownumber();
+    t3.shownumber();
+    t4.shownumber();
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+№9
+#include <iostream>
+using namespace std;
+class drobi
+{
+private:
+	int chislitel;
+	int znamenatel;
+public:
+	void getdrobi(int c, int z)
+	{
+		chislitel = c;
+		znamenatel = z;
+	}
+	void showdrobi()
+	{
+		cout << chislitel << " / " << znamenatel << endl;
+	}
+	void sumdrobi(drobi a)
+	{
+		if (znamenatel != a.znamenatel)
+			cout << chislitel * a.znamenatel + znamenatel * a.chislitel << " / " << znamenatel * a.znamenatel << endl;
+		else
+			cout << chislitel + a.chislitel << " / " << a.znamenatel << endl;
+	}
+};
+
+int main()
+{
+	char prodoljenie;
+	int chislitel;
+	int znamenatel;
+	drobi a;
+	drobi b;
+	char dummychar;
+	setlocale(LC_ALL, "Russian");
+	prodoljenie = 'y';
+	while (prodoljenie == 'y')
+	{
+	cout << "Введите первую дробь ";
+	cin >> chislitel >> dummychar >> znamenatel;
+	a.getdrobi(chislitel, znamenatel);
+	cout << "Введите вторую дробь ";
+	cin >> chislitel >> dummychar >> znamenatel;
+	b.getdrobi(chislitel, znamenatel);
+	a.sumdrobi(b);
+	cout << "Хотите посчитать еще одну дробь? Введите y, если да и n, если нет." << endl;
+	cin >> prodoljenie;
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+№10 не законченный
+#include <iostream>
+using namespace std;
+class angle // определение класса 
+{
+public:
+	int gradusi;
+	float minuti;
+	char direction;
+};
+class ship
+{
+private:
+	int number;
+	angle shirota;
+	angle dolgota;
+public:
+	static int id;
+	void getangleA()
+	{
+		char A;
+		cout << " Введите градусы и минуты" << endl;
+		cin >> shirota.gradusi >> A >> shirota.minuti >> A;
+		cout << "Введите напрваление " << endl;
+		cin >> shirota.direction;
+	}
+	void getangleB()
+	{
+		char A;
+		cout << " Введите градусы и минуты" << endl;
+		cin >> dolgota.gradusi >> A >> dolgota.minuti >> A;
+		cout << "Введите напрваление " << endl;
+		cin >> dolgota.direction;
+	}
+	ship()
+	{
+		number = id;
+		id++;
+	}
+	void showID()
+	{
+		cout << number;
+	}
+};
+int main()
+{
+	char prodoljenie;
+	int chislitel;
+	int znamenatel;
+	drobi a;
+	drobi b;
+	char dummychar;
+	setlocale(LC_ALL, "Russian");
+	prodoljenie = 'y';
+	while (prodoljenie == 'y')
+	{
+	cout << "Введите первую дробь ";
+	cin >> chislitel >> dummychar >> znamenatel;
+	a.getdrobi(chislitel, znamenatel);
+	cout << "Введите вторую дробь ";
+	cin >> chislitel >> dummychar >> znamenatel;
+	b.getdrobi(chislitel, znamenatel);
+	a.sumdrobi(b);
+	cout << "Хотите посчитать еще одну дробь? Введите y, если да и n, если нет." << endl;
+	cin >> prodoljenie;
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------
