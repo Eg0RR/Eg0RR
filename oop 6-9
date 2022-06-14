@@ -1,0 +1,2063 @@
+#6 №4
+#include <iostream>
+using namespace std;
+const int n = 5;
+static int maxint(int mass[], int n)
+{
+	int max = 0;
+	int maxindex = 0;
+	for (int i = 0; i < n; i++) 
+	{
+		if (mass[i] > max)
+		{
+			max = mass[i];
+			maxindex = i;
+		}
+	}
+	return maxindex;
+};
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	int a, b, c, x, y;
+	int mass[n];
+	for (int i = 0; i < n; i++) 
+	{
+		cin >> mass[i];
+	}
+	cout << "-------------------" << endl;
+	cout << maxint(mass, n);
+}
+--------------------------------------------------------------------------------------------------------------------------------
+№5
+#include <iostream>
+using namespace std;
+class fraction
+{
+private:
+	int chislitel, znamenatel;
+public:
+	fraction() :chislitel(0), znamenatel(0)
+	{}
+	void drob()
+	{
+		char slesh;
+		cout << " Введите дробь раздельно " << endl;
+		cin >> chislitel >> slesh >> znamenatel;
+	}
+	void slojenie(fraction f1, fraction f2)
+	{
+		chislitel = (f1.chislitel * f2.znamenatel + f1.znamenatel * f2.chislitel);
+		znamenatel = (f1.znamenatel * f2.znamenatel);
+	}
+	void vichitanie(fraction f1, fraction f2)
+	{
+		chislitel = (f1.chislitel * f2.znamenatel - f1.znamenatel * f2.chislitel);
+		znamenatel = (f1.znamenatel * f2.znamenatel);
+	}
+	void umnojenie(fraction f1, fraction f2)
+	{
+		chislitel = (f1.chislitel * f2.chislitel);
+		znamenatel = (f1.znamenatel * f2.znamenatel);
+	}
+	void delenie(fraction f1, fraction f2)
+	{
+		chislitel = (f1.chislitel * f2.znamenatel);
+		znamenatel = (f1.znamenatel * f2.chislitel);
+	}
+	void lowterms() //Сокращение дроби
+	{
+		long tnum, tden, temp, gcd;
+		tnum = labs(chislitel); // Используем неотрицательные значения
+		tden = labs(znamenatel); // Нужен cmath
+		if (tden == 0)  // Проверка знаменателя
+		{
+			cout << "Недопустимый знаменатель";
+			exit(1);
+		}
+		else
+			if (tnum == 0)
+			{
+				chislitel = 0;
+				znamenatel = 1;
+				return;
+			}
+		// Нахождение наибольшего общего делителя
+		while (tnum != 0)
+		{
+			if (tnum < tden)  // Если числитель больше знаменателя, меняем их местами.
+			{
+				temp = tnum;
+				tnum = tden;
+				tden = temp;
+			}
+			tnum = tnum - tden;
+		}
+		gcd = tden;// Делим числитель и знаменатель на НОД.
+		chislitel = chislitel / gcd;
+		znamenatel = znamenatel / gcd;
+
+	}
+	void disp_fr()const
+	{
+		cout << chislitel << "/" << znamenatel << endl;
+	}
+};
+const int n = 3;
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	int a, b, c, x, y;
+	fraction mass[n];
+	fraction sum;
+	for (int i = 0; i < n; i++) 
+	{
+		mass[i].drob();
+		sum.slojenie(mass[i], sum);
+	}
+	sum.disp_fr();
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------
+№6
+#include <ctime>
+using namespace std;
+enum Suit { clubs, diamonds, hearts, spades };
+// от 2 до 10 обычные числа
+const int jack = 11;
+const int queen = 12;
+const int king = 13;
+const int ace = 14;
+/////////////////////////////////////////////////////////////
+class card
+{
+private:
+	int number;
+	Suit suit;
+public:
+	card() // конструктор
+	{ }
+	void set(int n, Suit s) // установка значения
+	{
+		suit = s; number = n;
+	}
+	void display(); // показ карты
+};
+/////////////////////////////////////////////////////////////
+void card::display()
+{
+	if (number >= 2 && number <= 10)
+		cout << number;
+	else
+	{
+		switch (number)
+		{
+		case jack: cout << 'J'; break;
+		case queen: cout << 'Q'; break;
+		case king: cout << 'K'; break;
+		case ace: cout << 'A'; break;
+		}
+	}
+	switch (suit)
+	{
+	case clubs: cout << static_cast<char>(5); break;
+	case diamonds: cout << static_cast<char>(4); break;
+	case hearts: cout << static_cast<char>(3); break;
+	case spades: cout << static_cast<char>(6); break;
+	}
+}
+/////////////////////////////////////////////////////////////
+int main()
+{
+	card deck[52];
+	int j;
+	cout << endl;
+	for (j = 0; j < 52; j++) // создаем упорядоченную колоду карт
+	{
+		int num = (j % 13) + 2;
+		Suit su = Suit(j / 13);
+		deck[j].set(num, su);
+	}
+	// показываем исходную колоду
+	cout << "Исходная колода:\n";
+	for (j = 0; j < 52; j++)
+	{
+		deck[j].display();
+		cout << " ";
+		if (!((j + 1) % 13)) // начинаем новую строку после каждой 13-й карты
+			cout << endl;
+	}
+	srand(time(NULL)); // инициализируем генератор случайных чисел
+	for (j = 0; j < 52; j++)
+	{
+		int k = rand() % 52; // выбираем случайную карту
+		card temp = deck[j]; // и меняем ее с текущей
+		deck[j] = deck[k];
+		deck[k] = temp;
+	}
+	// показываем перемешанную колоду
+	cout << "\nПеремешанная колода:\n";
+	for (j = 0; j < 52; j++)
+	{
+		deck[j].display();
+		cout << " ";
+		if (!((j + 1) % 13)) // начинаем новую строку после каждой 13-й карты
+			cout << endl;
+	}
+	return 0;
+}
+
+----------------------------------------------------------------------------------------------------------------
+№7
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <iomanip>
+using namespace std;
+class money
+{
+private:
+
+public:
+	long double	mstold(char str[100])
+	{
+		char number[100];
+		int numberindex = 0;
+		for (int i = 0; i < 100; i++)
+		{
+			if ((int(str[i]) >= 48) && (int(str[i]) <= 57))
+			{
+				number[numberindex] = str[i];
+				numberindex++;
+			}
+			if (int(str[i]) == 0)
+				break;
+		}
+		number[numberindex + 1] = char(0);
+		number[numberindex] = number[numberindex - 1];
+		number[numberindex - 1] = number[numberindex - 2];
+		number[numberindex - 2] = ',';
+		cout << number << endl;
+		return atof(number);
+	}
+};
+const int MAX = 80;
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	char str[MAX];            //строка 
+	cout << "\nвведите строку:";//получить строку от 
+	cin.get(str,MAX);
+	money m;
+	
+	long double otvet = m.mstold(str);
+
+	cout << fixed << setprecision (20) << otvet;
+
+}
+-------------------------------------------------------------------------------------------------------------------------
+№8
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <iomanip>
+using namespace std;
+const int limit = 10;
+class safearay
+{
+private:
+
+public:
+	
+	int mass[limit];
+	void putel(int index, int element)
+	{
+		if (index >= 0 && index < limit)
+			mass[index] = element;
+		else
+			cout << " index out of array " << endl;
+	}
+	int getel(int index)
+	{
+		if (index >= 0 && index < limit)
+
+			return mass[index];
+		else
+			cout << " index out of array " << endl;
+		return 0;
+	}
+};
+const int MAX = 80;
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	safearay sal;
+	int temp = 12345;
+	sal.putel(7, temp);
+	temp = sal.getel(7);
+	cout << temp << endl;
+}
+---------------------------------------------------------------------------------------------------
+№9
+// stakaray.cpp
+// класс стек
+#include <iostream>
+using namespace std;
+///////////////////////////////////////////////////////////
+class queue
+{
+private:
+	enum { MAX = 10 }; // немного нестандартный синтаксис
+	int q[MAX]; // стек в виде массива
+	int head; // front
+	int tail; //rear
+public:
+	queue() // конструктор
+	{
+		tail = -1;
+		head = -1;
+		
+	}
+	void put(int element) // поместить в стек
+	{
+		tail++;
+		q[tail] = element;
+		cout << "Добавлен элемент" << q[tail] << endl;
+		if (head > 0)
+		{
+			head--;
+		}
+
+	}
+	int get() // взять из стека
+	{
+		if (tail > 0)
+		{
+			
+			tail--;
+		}
+		head++;
+		cout << "Возвращаем элемент" << q[head] << endl;
+		return q[head];
+	}
+};
+///////////////////////////////////////////////////////////
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	queue q;
+	q.put(11);
+	q.put(22);
+	cout << "1: " << q.get() << endl;
+	cout << "2: " << q.get() << endl;
+	q.put(33);
+	q.put(44);
+	q.put(55);
+	q.put(66);
+	cout << "3: " << q.get() << endl;
+	cout << "4: " << q.get() << endl;
+	cout << "5: " << q.get() << endl;
+	cout << "6: " << q.get() << endl;
+	cin.get();
+	return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+№10
+#include <iostream>
+using namespace std;
+///////////////////////////////////////////////////////////
+class matrix
+{
+private:
+	int mass[10][10];
+	int M;
+	int N;
+public:
+	matrix(int a, int b)
+	{
+		M = a;
+		N = b;
+	}
+	void putel(int i, int j, int element)
+	{
+		if (i < M && j < N && i >= 0 && j >= 0)
+			mass[i][j] = element;
+		else
+			cout << " index out of array " << endl;
+	}
+	int getel(int i, int j)
+	{
+		if (i < M && j < N && i >= 0 && j >= 0)
+			return mass[i][j];
+		else
+			cout << " index out of array " << endl;
+	}
+};
+///////////////////////////////////////////////////////////
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	matrix ml(5, 5); // Описываем матрицу 
+	int temp = 12345; // Описываем целое 
+	ml.putel(4, 4, temp); // Помещаем значение 
+	temp = ml.getel(4, 4); // Получаем значение из матрицы 
+	return 0;
+}
+------------------------------------------------------------------------------------------------------------------------------------
+№11
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include <iomanip>
+using namespace std;
+class Money {
+	string mon1;
+	string mon2;
+	long double sum;
+public:
+	void ldtoms() {
+		stringstream conv;
+		conv << fixed << setprecision(2) << sum;
+		conv >> mon1;
+	}
+	void getMoney() {
+		cout << "Введите сумму денег " << endl;
+		cin >> sum;
+		if (sum > 9999999999999990.00)
+		{
+			cout << "Может ещё?";
+			system("pause");
+			exit(1);
+		}
+	}
+	void strings() {
+		string doll("$");
+		mon2 = mon1;
+		for (int i = mon2.size() - 6; i > 1; i -= 3) mon2.insert(i, " ");
+		mon2.insert(1, " ");
+		mon1 = "$" + mon2;
+	}
+	void diplay() const {
+		cout << endl << mon1 << endl;
+	}
+};
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	Money m;
+	m.getMoney();
+	m.ldtoms();
+	m.strings();
+	m.diplay();
+	system("pause");
+	return 0;
+}
+-------------------------------------------------------------------------------------------------------
+№12
+#include<iostream>
+#include <string>
+#include <stdlib.h>
+#include <iomanip>
+using namespace std;
+class bMoney
+{
+private:
+	string strMon;
+	long double number;
+public:
+	bMoney() : number(0)
+	{}
+	void mstold()
+	{
+		cout << "Введите сумму с точкой и знаком доллар" << endl;
+		getline(cin, strMon, '$');
+		int wlen = strMon.length();
+		int n = 0;
+		string num;
+		for (int j = 0; j < wlen; j++)
+			if (strMon[j] != ',' && strMon[j] != '$')
+				num.push_back(strMon[j]); ;
+		number = stold(num);
+	}
+	void madd(bMoney mon1, bMoney mon2)
+	{
+		number = mon1.number + mon2.number;
+	}
+	void display()const
+	{
+		cout << setiosflags(ios::fixed)
+			<< setiosflags(ios::showpoint)
+			<< setprecision(2)
+			<< endl << number << '$' << endl;
+	}
+};
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	bMoney money1, money2, moneysum;
+	char ans;
+	do
+	{
+		money1.mstold();
+		money2.mstold();
+		moneysum.madd(money1, money2);
+		moneysum.display();
+		cout << "\nПовторить?" << endl;
+		cin.get();
+	} while (cin.get() != 'n');
+	system("pause");
+	return 0;
+}
+---------------------------------------------------------------------------------
+#7 №5
+#include <iostream>
+using namespace std;
+class Time
+{
+private:
+	unsigned int hour, minutes, seconds;
+public:
+	Time() : hour(0), minutes(0), seconds(0)
+	{}
+	Time(unsigned int h, unsigned int m, unsigned int s) : hour(h), minutes(m),
+		seconds(s)
+	{}
+	void display()const
+	{
+		cout << hour << ":" << minutes << ":" << seconds << endl;
+	};
+	Time operator + (Time t2)
+	{
+		long totalsecs = (hour * 3600) + (minutes * 60) + seconds + (t2.hour *
+			3600) + (t2.minutes * 60) + t2.seconds;
+		int h = totalsecs / (60 * 60);
+		int m = totalsecs % (60 * 60) / 60;
+		int s = totalsecs % (60 * 60) % 60;
+		return Time(h, m, s);
+	}
+	Time operator ++ ()
+	{
+		return Time(++hour, ++minutes, ++seconds);
+	}
+	Time operator -- ()
+	{
+		return Time(--hour, --minutes, --seconds);
+	}
+	Time operator ++ (int)
+	{
+		return Time(hour++, minutes++, seconds++);
+	}
+	Time operator -- (int)
+	{
+		return Time(hour--, minutes--, seconds--);
+	}
+};
+int main()
+{
+	Time time_1(4, 2, 5), time_2(3, 1, 2);
+	Time time_sum, temp;
+	time_sum = time_1 + time_2;
+	time_1.display();
+	time_2.display();
+	time_sum.display();
+	++time_sum; time_sum.display();
+	--time_sum; time_sum.display();
+	temp = time_sum++; temp.display();
+	temp = time_sum--; temp.display();
+	system("pause");
+	return 0;
+}
+-------------------------------------------------------------------------------------------------------------
+№6
+#include <iostream>
+using namespace std;
+class Time
+{
+private:
+unsigned int hour, minutes, seconds;
+public:
+Time() : hour(0), minutes(0), seconds(0)
+{}
+Time(unsigned int h, unsigned int m, unsigned int s) : hour(h), minutes(m),
+seconds(s)
+{}
+void display()const
+{
+cout << hour << ":" << minutes << ":" << seconds << endl;
+};
+Time operator + (Time t2)
+{
+long totalsecs = (hour * 3600) + (minutes * 60) + seconds + (t2.hour *
+3600) + (t2.minutes * 60) + t2.seconds;
+int h = totalsecs / (60 * 60);
+int m = totalsecs % (60 * 60) / 60;
+int s = totalsecs % (60 * 60) % 60;
+return Time(h, m, s);
+}
+Time operator - (Time t2)
+{
+long totalsecs = ((hour * 3600) + (minutes * 60) + seconds) - ((t2.hour
+* 3600) + (t2.minutes * 60) + t2.seconds);
+int h = totalsecs / (60 * 60);
+int m = totalsecs % (60 * 60) / 60;
+int s = totalsecs % (60 * 60) % 60;
+return Time(h, m, s);
+}
+Time operator * (Time t2)
+{
+long totalsecs = (hour * 3600) + ((minutes * 60) + seconds) * ((t2.hour
+* 3600) + (t2.minutes * 60) + t2.seconds);
+int h = totalsecs / (60 * 60);
+int m = totalsecs % (60 * 60) / 60;
+int s = totalsecs % (60 * 60) % 60;
+return Time(h, m, s);
+}
+Time operator ++ ()
+{
+return Time(++hour, ++minutes, ++seconds);
+}
+Time operator -- ()
+{
+return Time(--hour, --minutes, --seconds);
+}
+Time operator ++ (int)
+{
+return Time(hour++, minutes++, seconds++);
+}
+Time operator -- (int)
+{
+return Time(hour--, minutes--, seconds--);
+}
+};
+int main()
+{
+Time time_1(4, 2, 5), time_2(3, 1, 2);
+Time time_sum, temp;
+time_sum = time_1 + time_2;
+time_1.display();
+time_2.display();
+time_sum.display();
+++time_sum; time_sum.display();
+--time_sum; time_sum.display();
+temp = time_sum++; temp.display();
+temp = time_sum--; temp.display();
+time_sum = time_1 - time_2; time_sum.display();
+time_sum = time_1 * time_2; time_sum.display();
+system("pause");
+return 0;
+}
+-------------------------------------------------------------------------------------------------------------
+№7
+#include <iostream>
+#include <cmath>
+using namespace std;
+class Fraction
+{
+private:
+int numerator, denominator;
+public:
+Fraction() :numerator(0), denominator(0)
+{}
+Fraction(int num, int denom) : numerator(num), denominator(denom)
+{}
+void get_fr()
+{
+char ch;
+cout << "Введите дробь" << endl;
+cin >> numerator >> ch >> denominator;
+if (numerator == 0 && denominator == 0)
+{
+if (numerator == 1 && denominator == 1)
+{
+if (numerator == 0 && denominator == 1)
+{
+cout << "Error!" << endl;
+exit(1);
+}
+}
+}
+}
+Fraction operator + (Fraction f2)
+{
+int num = numerator * f2.denominator + denominator * f2.numerator;
+int denom = denominator * f2.denominator;
+return Fraction(num, denom);
+}
+Fraction operator - (Fraction f2)
+{
+int num = numerator * f2.denominator - denominator * f2.numerator;
+int denom = denominator * f2.denominator;
+return Fraction(num, denom);
+}
+Fraction operator * (Fraction f2)
+{
+int num = numerator * f2.denominator;
+int denom = denominator * f2.denominator;
+return Fraction(num, denom);
+}
+Fraction operator / (Fraction f2)
+{
+int num = numerator * f2.denominator;
+int denom = denominator * f2.numerator;
+return Fraction(num, denom);
+}
+void lowterms()
+{
+long tnum, tden, temp, gcd;
+tnum = labs(numerator);
+tden = labs(denominator);
+if (tden == 0)
+{
+cout << "Неправильный знаменатель"; exit(1);
+}
+else if (tnum == 0)
+{
+numerator = 0; denominator = 1; return;
+}
+while (tnum != 0)
+{
+if (tnum < tden)
+{
+temp = tnum; tnum = tden; tden = temp;
+}
+tnum = tnum - tden;
+}
+gcd = tden;
+numerator = numerator / gcd;
+denominator = denominator / gcd;
+}
+void disp_fr()const
+{
+cout << numerator << "/" << denominator << endl;
+}
+};
+int main()
+{
+setlocale(LC_ALL, "Russian");
+char zn;
+do
+{
+Fraction fr1, fr2, fr_sum;
+fr1.get_fr();
+cout << "Введите знак" << endl; cin >> zn;
+fr2.get_fr();
+switch (zn)
+{
+case '+': fr_sum = fr1 + fr2; break;
+case '-': fr_sum = fr1 - fr2; break;
+case '*': fr_sum = fr1 * fr2; break;
+case '/': fr_sum = fr1 / fr2; break;
+}
+fr_sum.lowterms();
+fr_sum.disp_fr();
+cout << "Хотите продолжить? (y/n)" << endl; cin >> zn;
+} while (zn != 'n');
+return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------
+
+№8
+#include<iostream>
+#include <string>
+#include <stdlib.h>
+#include <iomanip>
+using namespace std;
+class bMoney
+{
+private:
+string strMon;
+long double number;
+public:
+bMoney() : number(0)
+{}
+bMoney(long double num)
+{
+number = num;
+}
+operator long double() const
+{
+long double num = number;
+return num;
+}
+void mstold()
+{
+cout << "Введите сумму со знаком доллар" << endl;
+getline(cin, strMon, '$');
+int wlen = strMon.length();
+int n = 0;
+string num;
+for (int j = 0; j < wlen; j++)
+if (strMon[j] != ',' && strMon[j] != '$')
+num.push_back(strMon[j]); ;
+number = stold(num);
+}
+bMoney operator + (bMoney mon2)
+{
+return number + mon2.number;
+}
+bMoney operator - (bMoney mon2)
+{
+return number - mon2.number;
+}
+bMoney operator * (long double mon2)
+{
+return number * mon2;
+}
+bMoney operator / (bMoney mon2)
+{
+return number / mon2.number;
+}
+bMoney operator / (long double mon2)
+{
+return number / mon2;
+}
+void display()const
+{
+cout << setiosflags(ios::fixed)
+<< setiosflags(ios::showpoint)
+<< setprecision(2)
+<< "\n" << number << '$' << endl;
+}
+};
+int main()
+{
+setlocale(LC_ALL, "russian");
+bMoney money1, money2, moneysum;
+long double num = 0;
+do
+{
+money1.mstold();
+money2.mstold();
+moneysum = money1 + money2; moneysum.display();
+moneysum = money1 - money2; moneysum.display();
+num = money2;
+moneysum = money1 * num; moneysum.display();
+moneysum = money1 / money2; moneysum.display();
+moneysum = money1 / num; moneysum.display();
+cout << "\nПовторить?" << endl;
+cin.get();
+} while (cin.get() != 'n');
+system("pause");
+return 0;
+}
+---------------------------------------------------------------------------------------------------------------
+№9
+#include <iostream>
+using namespace std;
+#include <process.h>
+const int LIMIT = 100;
+class safearray
+{
+private:
+int arr[LIMIT];
+public:
+int& operator[](int n)
+{
+if (n < 0 || n >= LIMIT)
+{
+cout << "Wrong index"; exit(1);
+}
+return arr[n];
+}
+};
+int main()
+{
+setlocale(LC_ALL, "Russian");
+safearray sa1;
+int up, down, down2, differ = 0;
+cout << "Введите верхний предел массива" << endl; cin >> up;
+cout << "Введите нижний предел массива" << endl; cin >> down;
+differ = up - 100;
+down2 = down;
+for (int i = down - differ; i < up - differ; i++)
+sa1[i] = (down2++) * 10;
+for (int i = down - differ; i < up - differ; i++)
+{
+int temp = sa1[i];
+cout << "Элемент " << down++ << " Равен " << temp << endl;
+}
+system("pause");
+return 0;
+}
+--------------------------------------------------------------------------------------------------------------
+№10
+#include<iostream>
+#include <string>
+#include <stdlib.h>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+class Cartesian;
+class Polar;
+class Polar
+{
+private:
+double corner;
+double radius;
+public:
+Polar() : corner(0), radius(0)
+{}
+Polar(double cor, double rad) : corner(cor), radius(rad)
+{}
+Polar(const Cartesian& cartes);
+void get()
+{
+cout << "Введите координаты и угол: " << endl;
+cin >> corner;
+if (corner < 0)
+if (corner > 360)
+exit(1);
+cout << "Введите радиус: " << endl;
+cin >> radius;
+}
+void display() const
+{
+cout << "Результат добавления: " << endl
+<< "Угол: " << corner << endl
+<< "Радиус: " << radius << endl;
+}
+double get_corner() const
+{
+return corner;
+}
+double get_radius() const
+{
+return radius;
+}
+};
+class Cartesian
+{
+private:
+double X;
+double Y;
+public:
+Cartesian() : X(0), Y(0)
+{}
+Cartesian(double x, double y) : X(x), Y(y)
+{}
+Cartesian(const Polar& pol);
+Cartesian operator + (Cartesian coord2)
+{
+double tempY = Y + coord2.Y;
+double tempX = X + coord2.X;
+return Cartesian(tempX, tempY);
+}
+double get_X() const
+{
+return X;
+}
+double get_Y() const
+{
+return Y;
+}
+};
+Cartesian::Cartesian(const Polar& pol)
+{
+double cor = pol.get_corner();
+double rad = pol.get_radius();
+X = rad * cos(cor);
+Y = rad * sin(cor);
+}
+Polar::Polar(const Cartesian& cartes)
+{
+double x = cartes.get_X();
+double y = cartes.get_Y();
+corner = tan(y / x);
+radius = hypot(x, y);
+}
+int main()
+{
+setlocale(LC_ALL, "Russian");
+Polar coordinate1, coordinate2, result_coordinate;
+Cartesian coord1, coord2, result_coord;
+coordinate1.get();
+coordinate2.get();
+coord1 = coordinate1;
+coord2 = coordinate2;
+result_coord = coord1 + coord2;
+result_coordinate = result_coord;
+result_coordinate.display();
+system("pause");
+return 0;
+}
+--------------------------------------------------------------------------------------------------------------
+
+№11
+#include <iostream>
+using namespace std;
+class Sterling
+{
+private:
+long pounds;
+int shilling;
+int pens;
+public:
+Sterling() : pounds(0), shilling(0), pens(0)
+{}
+Sterling(double funt)
+{
+pounds = static_cast<long> (funt);
+long deschast = funt - pounds;
+shilling = static_cast <int> (deschast * 20);
+pens = static_cast<int>((funt - pounds) * 240 - shilling * 12);
+}
+Sterling(long po, int s, int pe) : pounds(po), shilling(s), pens(pe)
+{}
+void getSterling()
+{
+cout << "Введите pounds: "; cin >> pounds;
+cout << "Введите shillings: "; cin >> shilling;
+cout << "Введите penses: "; cin >> pens;
+}
+void putSterling() const
+{
+cout << "Результат: J" << pounds << "." << shilling << "." << pens <<
+endl;
+}
+Sterling operator + (Sterling str2)
+{
+int sumpens = (pounds * 20 * 12 + shilling * 12 + pens) + (str2.pounds
+* 20 * 12 + str2.shilling * 12 + str2.pens);
+long po = sumpens / (20 * 12);
+int s = sumpens % (20 * 12) / 12;
+int pe = sumpens % (20 * 12) % 12;
+return Sterling(po, s, pe);
+}
+Sterling operator - (Sterling str2)
+{
+int sumpens = (pounds * 20 * 12 + shilling * 12 + pens) - (str2.pounds
+* 20 * 12 + str2.shilling * 12 + str2.pens);
+long po = sumpens / (20 * 12);
+int s = sumpens % (20 * 12) / 12;
+int pe = sumpens % (20 * 12) % 12;
+return Sterling(po, s, pe);
+}
+Sterling operator * (double str2)
+{
+int sumpens = (pounds * 20 * 12 + shilling * 12 + pens) * (str2);
+long po = sumpens / (20 * 12);
+int s = sumpens % (20 * 12) / 12;
+int pe = sumpens % (20 * 12) % 12;
+return Sterling(po, s, pe);
+}
+Sterling operator / (Sterling str2)
+{
+int sumpens = (pounds * 20 * 12 + shilling * 12 + pens) / (str2.pounds
+* 20 * 12 + str2.shilling * 12 + str2.pens);
+long po = sumpens / (20 * 12);
+int s = sumpens % (20 * 12) / 12;
+int pe = sumpens % (20 * 12) % 12;
+return Sterling(po, s, pe);
+}
+Sterling operator / (double str2)
+{
+int sumpens = (pounds * 20 * 12 + shilling * 12 + pens) / (str2);
+long po = sumpens / (20 * 12);
+int s = sumpens % (20 * 12) / 12;
+int pe = sumpens % (20 * 12) % 12;
+return Sterling(po, s, pe);
+}
+operator double()
+{
+float sum = pens + shilling * 12 + (pounds * 20) * 12;
+double des_funt = (sum / 2.4) / 100;
+return des_funt;
+}
+};
+int main()
+{
+setlocale(LC_ALL, "Russian");
+Sterling s1, s2, sum;
+double decimal;
+cout << "Введите десятичные фунты" << endl;
+cin >> decimal;
+s1.getSterling();
+s2.getSterling();
+sum = s1 + s2; sum.putSterling();
+sum = s1 - s2; sum.putSterling();
+sum = s1 * decimal; sum.putSterling();
+sum = s1 / s2; sum.putSterling();
+sum = s1 / decimal; sum.putSterling();
+decimal = sum; cout << decimal << endl;
+system("pause");
+};
+--------------------------------------------------------------------------------------------------------------
+№12
+#include<iostream>
+#include <string>
+#include <iomanip>
+using namespace std;
+class Sterling;
+class bMoney;
+class Sterling
+{
+private:
+	long pounds;
+	int shilling;
+	int pens;
+public:
+	Sterling() : pounds(0), shilling(0), pens(0)
+	{}
+	Sterling(long po, int s, int pe) : pounds(po), shilling(s), pens(pe)
+	{}
+	Sterling(const bMoney& Mon);
+	void getSterling()
+	{
+		cout << "Введите pounds: "; cin >> pounds;
+		cout << "Введите shillings: "; cin >> shilling;
+		cout << "Введите pens: "; cin >> pens;
+	}
+	void putSterling() const
+	{
+		cout << "Результат: J" << pounds << "." << shilling << "." << pens << endl;
+	}
+	long get_pounds() const
+	{
+		return pounds;
+	}
+	int get_shilling() const
+	{
+		return shilling;
+	}
+	int get_pens() const
+	{
+		return pens;
+	}
+};
+class bMoney
+{
+private:
+	string strMon;
+	long double number;
+public:
+	bMoney() : number(0)
+	{}
+	bMoney(const Sterling ster);
+	void mstold()
+	{
+		cout << "Введите сумму со знаком доллар" << endl;
+		getline(cin, strMon, '$');
+		int wlen = strMon.length();
+		int n = 0;
+		string num;
+		for (int j = 0; j < wlen; j++)
+			if (strMon[j] != ',' && strMon[j] != '$')
+				num.push_back(strMon[j]); ;
+		number = stold(num);
+	}
+	void display()const
+	{
+		cout << setiosflags(ios::fixed)
+			<< setiosflags(ios::showpoint)
+			<< setprecision(2)
+			<< endl << number << '$' << endl;
+	}
+	long double get_number() const
+	{
+		return number;
+	}
+};
+Sterling::Sterling(const bMoney& Mon)
+{
+	long double dollar = Mon.get_number();
+	int sumpens = (dollar / 50) * 20 * 12;
+	pounds = sumpens / (20 * 12);
+	shilling = sumpens % (20 * 12) / 12;
+	pens = sumpens % (20 * 12) % 12;
+}
+bMoney::bMoney(const Sterling ster)
+{
+	long po = ster.get_pounds();
+	int s = ster.get_shilling();
+	int pe = ster.get_pens();
+	number = (po * 50) + ((50 / 20) * s) + ((50 * 20 * 12) * pe);
+}
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	Sterling sterling, rsterling;
+	bMoney dollars, rdollars;
+	sterling.getSterling();
+	dollars.mstold();
+	rsterling = dollars;
+	rdollars = sterling;
+	rsterling.putSterling();
+	rdollars.display();
+	system("pause");
+}
+--------------------------------------------------------------------------------------------------------------
+#8 №4
+#include<iostream>
+#include <string>
+using namespace std;
+const int SAL = 3;
+class Sales
+{
+private:
+float sales[SAL];
+public:
+void getdata()
+{
+for (int j = 1; j <= SAL; j++)
+{
+cout << "Сводка книг, проданных в " << j << " месяце: ";
+cin >> sales[j];
+}
+}
+void putdata()const
+{
+for (int j = 1; j <= SAL; j++)
+{
+cout << "Сводка книг, проданных в " << j << " месяце: ";
+cout << sales[j] << endl;
+}
+}
+};
+class Publication
+{
+private:
+string name;
+float price;
+public:
+void getdata()
+{
+cout << "Название книги: "; cin >> name;
+cout << "Ценна: "; cin >> price;
+}
+void putdata()const
+{
+cout << "Название книги " << name << endl << "Стоит" << price << endl;
+}
+};
+class Book : private Sales, private Publication
+{
+private:
+int pages;
+public:
+void getgata()
+{
+Publication::getdata();
+cout << "кол-во страниц: "; cin >> pages;
+Sales::getdata();
+}
+void putdata()const
+{
+Publication::putdata();
+cout << "Кол-во страниц: " << pages << endl;
+Sales::putdata();
+}
+};
+class Type : private Sales, private Publication
+{
+private:
+float time;
+public:
+void getdata()
+{
+Publication::getdata();
+cout << "Запись книг"; cin >> time;
+Sales::getdata();
+}
+void putdata()const
+{
+Publication::putdata();
+cout << "Запись книг" << time << endl;
+Sales::putdata();
+}
+};
+class Disk : private Sales, private Publication
+{
+private:
+enum etype { CD, DVD };
+public:
+void getdata()
+{
+etype t_disk;
+char type;
+Publication::getdata();
+cout << "Тип диска (cd/dvd): "; cin >> type;
+if (type = 'c')
+t_disk = CD;
+else t_disk = DVD;
+Sales::getdata();
+}
+void putdata()const
+{
+Publication::putdata();
+etype t_disk;
+char type;
+cout << "Тип диска: ";
+if (t_disk = CD)
+cout << "CD";
+else
+cout << "DVD";
+cout << endl;
+Sales::putdata();
+}
+};
+int main()
+{
+setlocale(LC_ALL, "Russian");
+Book bok;
+Type tp;
+Disk dk;
+bok.getgata();
+tp.getdata();
+dk.getdata();
+cout << "\n" << "Класс книги: " << endl;
+bok.putdata();
+cout << "\n" << "Тип: " << endl;
+tp.putdata();
+cout << "\n" << "Класс диска: " << endl;
+dk.putdata();
+cout << endl;
+system("pause");
+};
+-------------------------------------------------------------------------------------------------------------------------
+№5
+#include <iostream>
+using namespace std;
+const int LEN = 80;
+class employee
+{
+private:
+char name[LEN];
+unsigned long number;
+public:
+void getdata()
+{
+cout << "Введите фамилию: "; cin >> name;
+cout << " Введите номер: "; cin >> number;
+}
+void putdata() const
+{
+cout << "\n Фамилия : " << name;
+cout << "\n Номер: " << number;
+}
+};
+class employee2 : public employee
+{
+private:
+double compensations;
+enum etype { hourly, weekly, monthly };
+etype period;
+public:
+void getdata()
+{
+employee::getdata();
+char type;
+cout << "\n Компенсация: "; cin >> compensations;
+cout << "\n Оплачиваемый период (первая буква часового, недельного, 
+месячного): "; cin >> type;
+switch (type)
+{
+case 'h':
+period = hourly; break;
+case 'w':
+period = weekly; break;
+case 'm':
+period = monthly; break;
+}
+}
+void putdata()const
+{
+employee::putdata();
+cout << "\n Компенсация " << compensations;
+cout << "\n Оплачиваемый период : ";
+switch (period)
+{
+case hourly:
+cout << "ежечасно"; break;
+case weekly:
+cout << "понедельно"; break;
+case monthly:
+cout << "помесячно"; break;
+}
+}
+};
+class manager : public employee2
+{
+private:
+char title[LEN];
+double dues;
+public:
+void getdata()
+{
+employee2::getdata();
+cout << " Профессия: "; cin >> title;
+cout << " Сводка пожертвований гольф-клуба "; cin >> dues;
+}
+void putdata() const
+{
+employee2::putdata();
+cout << "\n Профессия: " << title;
+cout << "\n Сводка пожертвований гольф-клуба: " << dues;
+}
+};
+class scientist : public employee2
+{
+private:
+int pubs;
+public:
+void getdata()
+{
+employee2::getdata();
+cout << " Сводка сообщений : "; cin >> pubs;
+}
+void putdata() const
+{
+employee2::putdata();
+cout << "\n Сводка сообщений : " << pubs;
+}
+};
+class laborer : public employee2
+{
+};
+int main()
+{
+setlocale(LC_ALL, "Russian");
+setlocale(0, "");
+manager m1, m2;
+scientist s1;
+laborer l1;
+cout << endl;
+cout << "\nИнформация о первом менеджере";
+m1.getdata();
+cout << "\nИнформация о втором менеджере";
+m2.getdata();
+cout << "\nИнформация первого ученого";
+s1.getdata();
+cout << "\nИнформация о первом рабочем";
+l1.getdata();
+cout << "\nИнформация о первом менеджере";
+m1.putdata();
+cout << "\nИнформация о втором менеджере";
+m2.putdata();
+cout << "\nИнформация первого ученого";
+s1.putdata();
+cout << "\nИнформация о первом рабочем";
+l1.putdata();
+cout << endl;
+system("pause");
+return 0;
+}
+---------------------------------------------------------------------------------------------------------------
+№6
+#include <iostream>
+#include <string>
+using namespace std;
+class publication
+{
+private:
+string title;
+float price;
+public:
+void getdata()
+{
+cout << "\nВведите название: "; cin >> title;
+cout << "Введите цену: "; cin >> price;
+}
+void putdata() const
+{
+cout << "\nНазвание: " << title;
+cout << "\nЦена: " << price;
+}
+};
+class book : private publication
+{
+private:
+int pages;
+public:
+void getdata()
+{
+publication::getdata();
+cout << "Введите количество страниц: "; cin >> pages;
+}
+void putdata() const
+{
+publication::putdata();
+cout << "\nКол-во страниц: " << pages;
+}
+};
+class tape : private publication
+{
+private:
+float time;
+public:
+void getdata()
+{
+publication::getdata();
+cout << "Введите игровое время : "; cin >> time;
+}
+void putdata() const
+{
+publication::putdata();
+cout << "\nИгровое время : " << time;
+}
+};
+int main()
+{
+setlocale(LC_ALL, "Russian");
+book book1;
+tape tape1;
+book1.getdata();
+tape1.getdata();
+book1.putdata();
+tape1.putdata();
+cout << endl;
+return 0;
+}
+------------------------------------------------------------------------------------------------------------------------------
+#include <iostream>
+using namespace std;
+class Counter
+{
+protected:
+unsigned int count;
+public:
+Counter() : count(0)
+{ }
+Counter(int c) : count(c)
+{ }
+unsigned int get_count() const
+{
+return count;
+}
+Counter operator ++ ()
+{
+return Counter(++count);
+}
+};
+class CountDn : public Counter
+{
+public:
+CountDn() : Counter()
+{ }
+CountDn(int c) : Counter(c)
+{ }
+CountDn operator -- ()
+{
+return CountDn(--count);
+}
+};
+int main()
+{
+CountDn c1;
+CountDn c2(100);
+cout << "\nc1=" << c1.get_count();
+cout << "\nc2=" << c2.get_count();
+++c1; ++c1; ++c1;
+cout << "\nc1=" << c1.get_count();
+--c2; --c2;
+cout << "\nc2=" << c2.get_count();
+CountDn c3 = --c2;
+cout << "\nc3=" << c3.get_count();
+cout << endl;
+return 0;
+}
+--------------------------------------------------------------------------------------------------------
+№10
+#include <iostream>
+using namespace std;
+const int LEN = 80;
+class student
+{
+private:
+char school[LEN];
+char degree[LEN];
+public:
+void getedu()
+{
+cout << " Enter school name: ";
+cin >> school;
+cout << " Enter higher education degree:\n";
+cout << " (uncompleted higher, bachelor, master, phd): ";
+cin >> degree;
+}
+void putedu() const
+{
+cout << "\n School: " << school;
+cout << "\n Degree: " << degree;
+}
+};
+class employee
+{
+private:
+char name[LEN];
+unsigned long number;
+public:
+void getdata()
+{
+cout << "\n Surname: "; cin >> name;
+cout << " Number: "; cin >> number;
+}
+void putdata() const
+{
+cout << "\n Surname: " << name;
+cout << "\n Number: " << number;
+}
+};
+class manager : private employee, private student
+{
+private:
+char title[LEN];
+double dues;
+public:
+void getdata()
+{
+employee::getdata();
+cout << " Profession: "; cin >> title;
+cout << " Golf-club donations count: "; cin >> dues;
+student::getedu();
+}
+void putdata() const
+{
+employee::putdata();
+cout << "\n Profession: " << title;
+cout << "\n Golf-club donations count: " << dues;
+student::putedu();
+}
+};
+class executive : public manager
+{
+private:
+float premium;
+int stock;
+public:
+void getdata()
+{
+manager::getdata();
+cout << " Prize summary: "; cin >> premium;
+cout << " Share count: "; cin >> stock;
+}
+void putdata()const
+{
+manager::putdata();
+cout << "\n Prize summary: " << premium;
+cout << "\n Share count: " << stock;
+}
+};
+class scientist : private employee, private student
+{
+private:
+int pubs;
+public:
+void getdata()
+{
+employee::getdata();
+cout << " Enter posts summary: "; cin >> pubs;
+student::getedu();
+}
+void putdata() const
+{
+employee::putdata();
+cout << "\n Posts summary: " << pubs;
+student::putedu();
+}
+};
+class laborer : public employee
+{
+};
+int main()
+{
+setlocale(0, "");
+manager m1;
+executive e1;
+scientist s1;
+laborer l1;
+cout << endl;
+cout << "\nThe first managers info";
+m1.getdata();
+cout << "\nThe first scientists info";
+s1.getdata();
+cout << "\nThe first supervisors info";
+e1.getdata();
+cout << "\nThe first workers info";
+l1.getdata();
+cout << "\nThe first managers info";
+m1.putdata();
+cout << "\nThe first scientists info";
+s1.putdata();
+cout << "\nThe first supervisors info";
+e1.putdata();
+cout << "\nThe first workers info";
+l1.putdata();
+cout << endl;
+system("pause");
+return 0;
+}
+---------------------------------------------------------------------------------------------------------------------------------
+#include <iostream>
+#include <string>
+using namespace std;
+class String
+{
+protected:
+enum { SZ = 80 };
+char str[SZ];
+public:
+String()
+{
+str[0] = '\0';
+}
+String(char s[])
+{
+strcpy(str, s);
+}
+void display() const
+{
+cout << str;
+}
+operator char* ()
+{
+return str;
+}
+};
+class Pstring : public String
+{
+public:
+Pstring() :String()
+{}
+Pstring(char s[])
+{
+if (strlen(s) > SZ - 1)
+{
+for (int j = 0; j < SZ - 1; j++)
+{
+str[j] = s[j];
+str[j + 1] = '\0';
+}
+}
+else
+{
+strcpy(str, s);
+}
+}
+String& left(Pstring st, int n)
+{
+for (int i = 0; i <= n; i++)
+{
+str = st.str;
+str[i + 1] = '\0';
+}
+return *this;
+}
+String& mid(Pstring st, int s, int n)
+{
+int u = 0;
+int start = s - 1; // 9-1=8
+int end = (n + start) - 1; // 18+8=26
+for (int i = start; i <= end; i++)
+{
+str = st.str;
+str[i + 1] = '\0';
+u++;
+}
+return *this;
+}
+String& right(Pstring st, int n)
+{
+int u = 0;
+int start = strlen(st.str) - n;
+int end = strlen(st.str) - 1;
+for (int i = start; i <= end; i++)
+{
+str = st.str;
+str[u + 1] = '\0';
+u++;
+}
+return *this;
+}
+};
+int main()
+{
+Pstring s1 = "It is a pleasure to welcome you as a new Premium User.";
+Pstring s2, s3, s4;
+s2.left(s1, 7).display();
+cout << endl;
+s3.mid(s1, 9, 18).display();
+cout << endl;
+s4.right(s1, 5).display();
+cout << endl;
+return 0;
+}
+---------------------------------------------------------------------------------------------------------------------------------------
+#9 №5
+#include <iostream>
+using namespace std;
+void addarrays(float* a1, float* a2, float* a3, int a_size) {
+for (int i = 0; i < a_size; i++) {
+a3[i] = a1[i] + a2[i];
+}
+}
+int main() {
+const int a_size = 10;
+float a1[a_size] = { 1,2,3,4,5,6,7,8,9,10 };
+float a2[a_size] = { 2,3,4,5,6,7,8,9,10,11 };
+float a3[a_size];
+addarrays(a1, a2, a3, a_size);
+for (int i = 0; i < a_size; i++) {
+cout << a3[i] << endl;
+}
+}
+----------------------------------------------------------------------------------------------------------------------
+№6
+#include <iostream>
+using namespace std;
+int compstr(char* s1, char* s2) {
+int result(0), a(0), b(0);
+for (int i = 0; i < sizeof(s1); i++) {
+if (s1[i] > s2[i]) a++;
+else b++;
+}
+if (a > b) result++;
+else result--;
+return result;
+}
+int main() {
+char a[6] = "abcde";
+char b[6] = "bcdef";
+cout << compstr(a, b);
+}
+-------------------------------------------------------------------------------------
+№7
+
+-------------------------------------------------------------------------------------
+№8
+#include <iostream>
+struct link
+{
+int data;
+link* next;
+};
+class linklist
+{
+private:
+link* first;
+public:
+linklist()
+{
+{
+first = NULL;
+}
+}
+void additem(int d);
+void display();
+};
+void linklist::additem(int d)
+{
+link* newlink = new link;
+newlink->data = d;
+if (first)
+{
+link* p = first;
+while (p->next)
+p = p->next;
+p->next = newlink;
+}
+else
+first = newlink;
+newlink->next = NULL;
+}
+void linklist::display()
+{
+link* current = first;
+while (current)
+{
+std::cout << current->data << std::endl;
+current = current->next;
+}
+}
+int main()
+{
+linklist li;
+li.additem(1);
+li.additem(2);
+li.additem(3);
+li.additem(4);
+li.display();
+system("pause");
+return 0;
+}
+------------------------------------------------------------------------------------
+
+№9
+#include <iostream>
+using namespace std;
+int main(int argc, char* argv[])
+{
+int a0[10], a1[10], a2[10], a3[10], a4[10],
+a5[10], a6[10], a7[10], a8[10], a9[10];
+int* ap[10];
+for (int a = 0; a < 10; a++)
+a0[a] = a + 10;
+for (int b = 0; b < 10; b++)
+a1[b] = b + 20;
+for (int c = 0; c < 10; c++)
+a2[c] = c + 30;
+for (int d = 0; d < 10; d++)
+a3[d] = d + 40;
+for (int e = 0; e < 10; e++)
+a4[e] = e + 50;
+for (int f = 0; f < 10; f++)
+a5[f] = f + 60;
+for (int g = 0; g < 10; g++)
+a6[g] = g + 70;
+for (int h = 0; h < 10; h++)
+a7[h] = h + 80;
+for (int j = 0; j < 10; j++)
+a8[j] = j + 90;
+for (int i = 0; i < 10; i++)
+a9[i] = i + 100;
+ap[0] = a0;
+ap[1] = a1;
+ap[2] = a2;
+ap[3] = a3;
+ap[4] = a4;
+ap[5] = a5;
+ap[6] = a6;
+ap[7] = a7;
+ap[8] = a8;
+ap[9] = a9;
+for (int w = 0; w < 10; w++)
+for (int z = 0; z < 10; z++)
+cout << ap[w][z] << endl;
+return 0;
+}
+
+------------------------------------------------------------------------------------
+
+№10
+#include <iostream>
+using namespace std;
+int main(int argc, char* argv[])
+{
+int m = 10;
+int* ap[10];
+for (int j = 0; j < 10; j++)
+*(ap + j) = new int[10];
+for (int k = 0; k < 10; k++)
+for (int h = 0; h < 10; h++)
+*(*(ap + k) + h) = m++;
+for (int y = 0; y < 10; y++)
+for (int f = 0; f < 10; f++)
+cout << *(*(ap + y) + f) << endl;
+return 0;
+}
+
+-------------------------------------------------------------------------------------
+
+№11
+#include<iostream>
+using namespace std;
+class tenmas
+{
+private:
+int** mas;
+public:
+tenmas()
+{
+mas = new int* [10];
+for (int i = 0; i < 10; i++)
+{
+*(mas + i) = new int[10];
+}
+}
+void input(int x, int y, int n)
+{
+*(*(mas + x) + y) = n;
+}
+void input(int* x, int y, int n)
+{
+*(x + y) = n;
+}
+void print(int x, int y, int n)
+{
+cout << *(*(mas + x) + y) << endl;
+}
+void print(int* x, int y)
+{
+cout << *(x + y) << endl;
+}
+int* operator [](int a)
+{
+return *(mas + a);
+}
+};
+int main()
+{
+setlocale(LC_ALL, "Russian");
+tenmas tm;
+tm.input(tm[2], 3, 4);
+tm.print(tm[2], 3);
+return 0;
+}
+
+------------------------------------------------------------------------------------
+
+№12
+#include <iostream>
+using namespace std;
+//Размер памяти
+enum { MAX = 1000 };
+//Модель памяти типа float
+float fmemory[MAX];
+//Модель памяти для указателей
+int pmemory[MAX];
+//Свободное место для float
+int fmem_top = 0;
+//Свободное место для указателя
+int pmem_top = 0;
+class Float
+{
+private:
+int addr;
+public:
+Float(float a)
+{
+fmemory[fmem_top] = a;
+addr = fmem_top;
+fmem_top++;
+}
+int operator &()
+{
+return addr;
+}
+};
+class ptrFloat
+{
+private:
+int addr;
+public:
+ptrFloat(int a)
+{
+pmemory[pmem_top] = a;
+addr = pmem_top;
+pmem_top++;
+}
+ptrFloat operator = (int a)
+{
+return ptrFloat(a);
+}
+float& operator *()
+{
+return fmemory[pmemory[addr]];
+}
+};
+void main()
+{
+Float var1 = 1.234F;
+Float var2 = 5.678F;
+ptrFloat ptr1 = &var1;
+ptrFloat ptr2 = &var2;
+cout << " *ptr1 = " << *ptr1 << endl;
+cout << " *ptr2 = " << *ptr2 << endl;
+*ptr1 = 7.123F;
+*ptr2 = 8.456F;
+cout << " *ptr1 = " << *ptr1 << endl;
+cout << " *ptr2 = " << *ptr2 << endl;
+ptr2 = &var2;
+cout << " *ptr2 = " << *ptr2 << endl;
+}
+-------------------------------------------------------------------------------------
