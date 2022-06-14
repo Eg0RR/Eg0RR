@@ -1,0 +1,16 @@
+#include <iostream>
+#include <locale.h>
+using namespace std;
+struct date {
+int d;
+int m;
+int g;
+}date;
+int main()
+{
+char buff;
+setlocale(LC_ALL, "Russian");
+cout << "Введите дату: \n";
+cin >> date.d >> buff >> date.m >> buff >> date.g;
+cout << date.d << buff << date.m << buff << date.g;
+}
