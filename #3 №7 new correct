@@ -1,0 +1,164 @@
+#include <iostream>
+#include <locale.h>
+using namespace std;
+enum etype { laborer, secretary, manager, accountant, executive, researcher };
+struct date {
+int day;
+int month;
+int year;
+};
+struct employee {
+int nom;
+float posobie;
+date priem;
+etype dolzh;
+}e1, e2, e3;
+int main()
+{
+char dummy, buff;
+setlocale(LC_ALL, "Rus");
+cout << "Введите номер, пособие, дату приема и 1-ую букву должности 1-ого сотрудника:
+\n";
+cin >> e1.nom >> e1.posobie >> e1.priem.day >> dummy >> e1.priem.month >> dummy >>
+e1.priem.year >> buff;
+switch (buff) {
+case 'l':
+e1.dolzh = laborer;
+break;
+case 's':
+e1.dolzh = secretary;
+break;
+case 'm':
+e1.dolzh = manager;
+break;
+case 'a':
+e1.dolzh = accountant;
+break;
+case 'e':
+e1.dolzh = executive;
+break;
+case 'r':
+e1.dolzh = researcher;
+break;
+}
+cout << "Введите номер, пособие, дату приема и 1-ую букву должности 2-ого сотрудника:
+\n";
+cin >> e2.nom >> e2.posobie >> e2.priem.day >> dummy >> e2.priem.month >> dummy >>
+e2.priem.year >> buff;
+switch (buff) {
+case 'l':
+e2.dolzh = laborer;
+break;
+case 's':
+e2.dolzh = secretary;
+break;
+case 'm':
+e2.dolzh = manager;
+break;
+case 'a':
+e2.dolzh = accountant;
+break;
+case 'e':
+e2.dolzh = executive;
+break;
+case 'r':
+e2.dolzh = researcher;
+break;
+}
+cout << "Введите номер, пособие, дату приема и 1-ую букву должности 3-его сотрудника:
+\n";
+cin >> e3.nom >> e3.posobie >> e3.priem.day >> dummy >> e3.priem.month >> dummy >>
+e3.priem.year >> buff;
+switch (buff) {
+case 'l':
+e3.dolzh = laborer;
+break;
+case 's':
+e3.dolzh = secretary;
+break;
+case 'm':
+e3.dolzh = manager;
+break;
+case 'a':
+e3.dolzh = accountant;
+break;
+case 'e':
+e3.dolzh = executive;
+break;
+case 'r':
+e3.dolzh = researcher;
+break;
+}
+cout << "Номер, пособие, дата приема и должность 1-ого сотрудника: " << e1.nom << ",
+" << e1.posobie <<
+", " << e1.priem.day << dummy << e1.priem.month << dummy << e1.priem.year <<
+", ";
+switch (e1.dolzh) {
+case 0:
+cout << " laborer\n";
+break;
+case 1:
+cout << " secretary\n";
+break;
+case 2:
+cout << " manager\n";
+break;
+case 3:
+cout << " accountant\n";
+break;
+case 4:
+cout << " executive\n";
+break;
+case 5:
+cout << " researcher\n";
+break;
+}
+cout << "Номер, пособие, дата приема и должность 2-ого сотрудника: " << e2.nom << ",
+" << e2.posobie <<
+", " << e2.priem.day << dummy << e2.priem.month << dummy << e2.priem.year <<
+", ";
+switch (e2.dolzh) {
+case 0:
+cout << " laborer\n";
+break;
+case 1:
+cout << " secretary\n";
+break;
+case 2:
+cout << " manager\n";
+break;
+case 3:
+cout << " accountant\n";
+break;
+case 4:
+cout << " executive\n";
+break;
+case 5:
+cout << " researcher\n";
+break;
+}
+cout << "Номер, пособие, дата приема и должность 3-его сотрудника: " << e3.nom << ",
+" << e3.posobie <<
+", " << e3.priem.day << dummy << e3.priem.month << dummy << e3.priem.year <<
+", ";
+switch (e3.dolzh) {
+case 0:
+cout << " laborer\n";
+break;
+case 1:
+cout << " secretary\n";
+break;
+case 2:
+cout << " manager\n";
+break;
+case 3:
+cout << " accountant\n";
+break;
+case 4:
+cout << " executive\n";
+break;
+case 5:
+cout << " researcher\n";
+break;
+}
+}
