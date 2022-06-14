@@ -1,0 +1,52 @@
+#include <iostream>
+#include <locale.h>
+using namespace std;
+enum etype { laborer, secretary, manager, accountant, executive, researcher };
+int main()
+{
+setlocale(LC_ALL, "Rus");
+char a;
+int num;
+cout << "Введите первую букву должности: ";
+cin >> a;
+switch (a) {
+case 'l':
+num = laborer;
+break;
+case 's':
+num = secretary;
+break;
+case 'm':
+num = manager;
+break;
+case 'a':
+num = accountant;
+break;
+case 'e':
+num = executive;
+break;
+case 'r':
+num = researcher;
+break;
+}
+switch (num) {
+case 0:
+cout << "Полное название должности: laborer";
+break;
+case 1:
+cout << "Полное название должности: secretary";
+break;
+case 2:
+cout << "Полное название должности: manager";
+break;
+case 3:
+cout << "Полное название должности: accountant";
+break;
+case 4:
+cout << "Полное название должности: executive";
+break;
+case 5:
+cout << "Полное название должности: researcher";
+break;
+}
+}
