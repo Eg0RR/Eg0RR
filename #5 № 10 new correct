@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+class Ship {
+private:
+int number;
+static int i; int
+gradus; float min;
+char napravlenie;
+public:
+Ship() :number(0), gradus(0), min(0), napravlenie(0)
+{
+i++;
+number = i;
+}
+Ship(int num, int deg, float m, char d) : number(num), gradus(deg), min(m),
+napravlenie(d)
+{}
+void get_sh()
+{
+cout << "Введите градусы: " << endl; cin >> gradus; cout <<
+"Введите минуты: " << endl; cin >> min; cout << "Введите направление(N,
+S, E, W): " << endl; cin >> napravlenie;
+}
+void disp_sh()
+{
+ cout << "Номер: " << number << ", координаты: " << gradus << '°' << min << "." <<
+napravlenie <<"'"<< endl;
+}
+};
+int Ship::i = 0;
+int main() {
+setlocale(LC_ALL,
+"Russian"); Ship ship1, ship2,
+ship3; ship1.get_sh();
+ship2.get_sh(); ship3.get_sh();
+ship1.disp_sh();
+ship2.disp_sh();
+ship3.disp_sh();
+system("pause"); return 0;
+} 
