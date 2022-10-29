@@ -1,0 +1,195 @@
+#include <windows.h>
+#include <stdlib.h>
+#include <cmath>
+#include <iostream>
+
+using namespace std;
+
+struct Point {
+	int x;
+	int y;
+};
+double BatMan(int x) {
+    return 2 * sqrt(-abs(abs(x) - 1) * abs(3 - abs(x)) / ((abs(x) - 1) * (3 - abs(x)))) * (1 + abs(abs(x) - 3) / (abs(x) - 3)) * sqrt(1 - (x / 7) ^ 2);
+}
+
+int main() {
+
+    HWND hwnd = GetConsoleWindow();
+    HDC hdc = GetDC(hwnd);
+
+    int x = 0;
+    /*
+    for (float i = 0; i < 3.14 * 10; i += 0.05)
+    {
+        SetPixel(hdc, x, 50 + 25 * cos(i), RGB(255, 255, 255));
+        x += 1;
+    }*/
+    /*for (int x = 0; x < 100; x++)
+    {
+        for (int y = 0; y < 10; y++) 
+        {
+            SetPixel(hdc, x, y * 10, RGB(255, 255, 255));
+            SetPixel(hdc, y * 10, x, RGB(255, 255, 255));
+        }
+    }
+    */
+    for (int x = 0; x < 700; x++)
+        for (int y = 0; y < 700; y++)
+            SetPixel(hdc, x, y, RGB(157, 96, 65));
+    for (int x = 0; x < 700; x++)
+        for (int y = 350; y < 700; y++)
+            SetPixel(hdc, x, y, RGB(127, 136, 245));
+    ReleaseDC(hwnd, hdc);
+    cin.ignore();
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <windows.h>
+#include <stdlib.h>
+#include <cmath>
+#include <iostream>
+
+using namespace std;
+
+struct Point {
+    int x;
+    int y;
+};
+double BatMan(int x) {
+    return 2 * sqrt(-abs(abs(x) - 1) * abs(3 - abs(x)) / ((abs(x) - 1) * (3 - abs(x)))) * (1 + abs(abs(x) - 3) / (abs(x) - 3)) * sqrt(1 - (x / 7) ^ 2);
+}
+
+int main() {
+
+    HWND hwnd = GetConsoleWindow();
+    HDC hdc = GetDC(hwnd);
+
+    int x = 0;
+    /*
+    for (float i = 0; i < 3.14 * 10; i += 0.05)
+    {
+        SetPixel(hdc, x, 50 + 25 * cos(i), RGB(255, 255, 255));
+        x += 1;
+    }*/
+    /*for (int x = 0; x < 100; x++)
+    {
+        for (int y = 0; y < 10; y++)
+        {
+            SetPixel(hdc, x, y * 10, RGB(255, 255, 255));
+            SetPixel(hdc, y * 10, x, RGB(255, 255, 255));
+        }
+    }
+    */
+   // for (int x = 0; x < 700; x++)
+      //  for (int y = 0; y < 220; y++)
+        //    SetPixel(hdc, x, y, RGB(37, 32, 255));
+   // for (int x = 0; x < 700; x++)
+       // for (int y = 200; y < 700; y++)
+           // SetPixel(hdc, x, y, RGB(244, 239, 11));
+    for (int x = 0; x < 700; x++)
+        for (int y = 0; y < 150; y++)
+            SetPixel(hdc, x, y, RGB(255, 255, 255));
+    for (int x = 0; x < 700; x++)
+        for (int y = 200; y < 150; y++)
+            SetPixel(hdc, x, y, RGB(0, 0, 223));
+    for (int x = 0; x < 700; x++)
+        for (int y = 400; y < 150; y++)
+            SetPixel(hdc, x, y, RGB(255, 0, 0));
+    ReleaseDC(hwnd, hdc);
+    cin.ignore();
+    return 0;
+}
+-------------------------------------------------------------------------------------------------
+#include <windows.h>
+#include <stdlib.h>
+#include <cmath>
+#include <iostream>
+
+using namespace std;
+
+struct Point {
+    int x;
+    int y;
+};
+double BatMan(int x) {
+    return 2 * sqrt(-abs(abs(x) - 1) * abs(3 - abs(x)) / ((abs(x) - 1) * (3 - abs(x)))) * (1 + abs(abs(x) - 3) / (abs(x) - 3)) * sqrt(1 - (x / 7) ^ 2);
+}
+
+int main() {
+
+    HWND hwnd = GetConsoleWindow();
+    HDC hdc = GetDC(hwnd);
+
+    int x = 0;
+     for (int x = 0; x < 700; x++)
+         for (int y = 0; y < 220; y++)
+             SetPixel(hdc, x, y, RGB(37, 32, 255));
+     for (int x = 0; x < 700; x++)
+         for (int y = 220; y < 700; y++)
+             SetPixel(hdc, x, y, RGB(244, 239, 11));
+    
+    for (int x = 0; x < 700; x++)
+        for (int y = 0; y < 170; y++)
+            SetPixel(hdc, x, y, RGB(255, 255, 255));
+    for (int x = 0; x < 700; x++)
+        for (int y = 170; y < 320; y++)
+            SetPixel(hdc, x, y, RGB(0, 0, 223));
+    for (int x = 0; x < 700; x++)
+        for (int y = 320; y < 480; y++)
+            SetPixel(hdc, x, y, RGB(255, 0, 0));
+            
+    ReleaseDC(hwnd, hdc);
+    cin.ignore();
+    return 0;
+}
+------------------------------------------------------------------------------------------------------------------
+#include <windows.h>
+#include <stdlib.h>
+#include <cmath>
+#include <iostream>
+
+using namespace std;
+
+struct Point {
+    int x;
+    int y;
+};
+double BatMan(int x) {
+    return 2 * sqrt(-abs(abs(x) - 1) * abs(3 - abs(x)) / ((abs(x) - 1) * (3 - abs(x)))) * (1 + abs(abs(x) - 3) / (abs(x) - 3)) * sqrt(1 - (x / 7) ^ 2);
+}
+BOOL Line(HDC hdc, int x1, int y1, int x2, int y2)
+{
+    MoveToEx(hdc, x1, y1, NULL);
+    return LineTo(hdc, x2, y2);
+}
+int main() {
+
+    HWND hwnd = GetConsoleWindow();
+    HDC hdc = GetDC(hwnd);
+    int x = 0;
+    for (int x = 0; x < 502; x++)
+        for (int y = 0; y < 700; y++)
+            SetPixel(hdc, x, y, RGB(0, 255, 0));
+    HPEN Pen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0)); // создаем перо
+    SelectObject(hdc, Pen); // загружаем созданное перо в контекс
+    for (int x = 0; x < 500; x = x + 20)
+       Line(hdc, 0, x, 500, 100 + x);
+    for (int x = 0; x < 500; x = x + 20)
+        Line(hdc, 500, x, 0, 100 + x);
+    ReleaseDC(hwnd, hdc);
+    cin.ignore();
+    return 0;
+}
