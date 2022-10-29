@@ -1,0 +1,132 @@
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+
+using namespace std;
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	setlocale(LC_ALL, "Russian");
+	system("color 0F");//ЦВЕТ ФОНА И ТЕКСТА
+	cout << "Matrix has you\n";
+	const int N = 7;
+	const int B = 100;
+	char mass[N][N], max, min;
+	char history[B];
+	cout << "     ";
+	for (int i = 0; i < N; i++)
+		cout << "№" << i << "   ";
+	cout << "\n";
+	for (int i = 0; i < N; i++)
+	{
+		cout << "№" << i << " ";
+		for (int j = 0; j < N; j++)
+		{
+			mass[i][j] = 'O';
+
+			cout << "   " << mass[i][j] << " ";
+		}
+
+		cout << "\n";
+	}
+	int currentRow = 4;
+	int currentColumn = 4;
+	int currentB0mbRow = 2;
+	int currentB0mbColumn = 1;
+	mass[currentB0mbRow][currentB0mbColumn] = '*';
+	int heartRow = 1;
+	int heartColumn = 1;
+	int GlobalTimer = 0;
+	int B0mbTimer = 10;
+	int B0mbTimerMin = 0;
+	int B0mbStep = 0;
+	int historyIndex = 0;
+	mass[currentRow][currentColumn] = '+';
+	mass[1][1] = char(771);
+	char input = '2';
+	while (input != '0' && B0mbTimer != 0)
+	{
+		GlobalTimer++;
+		if (B0mbStep != 0)
+			B0mbTimer--;
+		cin >> input;
+		history[historyIndex] = input;
+		historyIndex++;
+		mass[currentRow][currentColumn] = 'O';
+		if (input == 'w' || input == 'W')
+		{
+			if (mass[currentRow - 1][currentColumn] == char(771))
+			{
+				if (heartRow != 0)
+
+					heartRow--;
+
+			}
+			if ((currentRow != 0 && mass[currentRow - 1][currentColumn] != char(771)) || ((mass[currentRow - 1][currentColumn] == char(771)) && currentRow != 1))
+				currentRow--;
+		}
+		if (input == 'a' || input == 'A')
+		{
+			if (mass[currentRow][currentColumn - 1] == char(771))
+			{
+				if (heartColumn != 0)
+					heartColumn--;
+			}
+			if ((currentColumn != 0 && mass[currentRow][currentColumn - 1] != char(771)) || ((mass[currentRow][currentColumn - 1] == char(771)) && currentColumn != 1))
+				currentColumn--;
+		}
+		if (input == 'd' || input == 'D')
+		{
+			if (mass[currentRow][currentColumn + 1] == char(771))
+			{
+
+				if (heartColumn != N - 1)
+					heartColumn++;
+			}
+
+
+			if (((currentColumn != N - 1) && mass[currentRow][currentColumn + 1] != char(771)) || ((mass[currentRow][currentColumn + 1] == char(771)) && currentColumn != N - 2))
+				currentColumn++;
+		}
+		if (input == 's' || input == 'S')
+		{
+			if (mass[currentRow + 1][currentColumn] == char(771))
+			{
+				if (heartRow != N - 1)
+
+					heartRow++;
+
+			}
+			if ((currentRow != N - 1 && mass[currentRow + 1][currentColumn] != char(771)) || ((mass[currentRow + 1][currentColumn] == char(771)) && currentRow != N - 2))
+				currentRow++;
+		}
+		if (currentRow == currentB0mbRow && currentColumn == currentB0mbColumn)
+			B0mbStep = 1;
+		system("cls");
+		mass[heartRow][heartColumn] = char(771);
+		mass[currentRow][currentColumn] = '+';
+		cout << "     ";
+		for (int i = 0; i < N; i++)
+			cout << "№" << i << "   ";
+		cout << "\n";
+		for (int i = 0; i < N; i++)
+		{
+			cout << "№" << i << " ";
+			for (int j = 0; j < N; j++)
+			{
+
+				cout << "   " << mass[i][j] << " ";
+			}
+			cout << "\n";
+		}
+		cout << " Шагов всего " << GlobalTimer;
+		cout << "  " << endl;
+		cout << " Шагов до взрыва " << B0mbTimer;
+		cout << "  " << endl;
+		for (int i = 0; i < historyIndex; i++)
+			cout << history[i] << "  ";
+		cout << " \n history " << endl;
+	}
+}
